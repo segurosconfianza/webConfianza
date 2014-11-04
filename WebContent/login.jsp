@@ -17,7 +17,13 @@
   </head>
 
   <body>
-
+	
+	<c:if test="${!empty param.login_error}">	
+			<div align="center">	
+			<p/><img src="Imagenes/candado_roto.jpg" width="40" height="40" ><span class="label label-danger">Incorreto nombre de usuario y/o contrase&ntilde;a</span>
+			</div>
+	</c:if>
+		
     <div class="container" align="center">    
         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" align="center">                    
             <div class="panel panel-info" >
@@ -26,9 +32,8 @@
                     </div>     
 
                     <div class="panel-body-confianza">
-                        <img src="img/img2.jpg" width=100%>
-						<img src="img/im3.jpg" >						
-                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                        <img src="Imagenes/Confianza/img2.jpg" width=100%>
+						<img src="Imagenes/Confianza/im3.jpg" >						                        
                             
                         <form id="loginform" class="form-horizontal" role="form" action="<c:url value='/j_spring_security_check'/>" method="post">
                             <p/>        
@@ -38,8 +43,8 @@
                             </div>
                                 
                             <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="login-password" type="password" class="form-control" name="j_password" placeholder="contrase&ntilde;a">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input id="login-password" type="password" class="form-control" name="j_password" placeholder="contrase&ntilde;a">
                             </div>
 
                             <div class="form-group">
@@ -49,16 +54,11 @@
                                   <input name="submit" type="submit" value="Login"/>
                                 </div>
                             </div>
-                            <img src="img/im4.jpg" >   
+                            <img src="Imagenes/Confianza/im4.jpg" >   
                         </form>     
-
-
-
                     </div>                     
             </div>  
         </div> 
-    </div>
-    	<script type="text/javascript">
-		</script>
+    </div>    	
   </body>
 </html>
