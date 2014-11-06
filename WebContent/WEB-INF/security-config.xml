@@ -14,11 +14,11 @@
 	<security:http use-expressions="true" access-denied-page="/WEB-INF/denied.jsp" >
 		<security:form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?login_error=true" default-target-url="/index.jsp" />
 		<security:intercept-url pattern="/index.jsp" access="isAuthenticated()"/>
-		<security:intercept-url pattern="/confianza/**" access="hasRole('ROLE_VIEWER')"/>
-		<security:intercept-url pattern="/Confianza/Pedido" access="isAuthenticated()" />
-		<security:intercept-url pattern="/Confianza/Resumen" access="hasAnyRole('ROLE_VIEWER', 'ROLE_EDITOR')" />
-		<security:intercept-url pattern="/Confianza/Listado" access="hasRole('ROLE_VIEWER', 'ROLE_EDITOR')" />
-		<security:logout/>
+		<security:intercept-url pattern="/confianza/**" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/confianza/Pedido" access="isAuthenticated()" />
+		<security:intercept-url pattern="/confianza/Resumen" access="hasAnyRole('ROLE_VIEWER', 'ROLE_EDITOR')" />
+		<security:intercept-url pattern="/confianza/Listado" access="hasRole('ROLE_VIEWER', 'ROLE_EDITOR')" />
+		<security:logout invalidate-session="true" logout-url="/logout"/>
 	</security:http>
 	
 	<ldap:context-source

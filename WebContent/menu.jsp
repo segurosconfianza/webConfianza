@@ -6,7 +6,7 @@
 		<title>Seguros Confianza</title>		
 	</head>
 	<!-- Bootstrap core CSS -->
-    <link href="CSS/Base.css" rel="stylesheet">
+    <link href="lib/CSS/Base.css" rel="stylesheet">
 	<body>				
 		<nav>
 			PERMISOS :3!!

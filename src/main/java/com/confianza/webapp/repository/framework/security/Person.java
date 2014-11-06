@@ -9,17 +9,9 @@ public class Person {
 	private String Description;
 	private String userName;
 	private String password;
+	private String sAMAccountName;
 	private List<String> groups;
-	private List<String> roles;
-					
-	public List<String> getRoles() {
-		return roles;
-	}
-	
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
-	
+
 	public List<String> getGroups() {
 		return groups;
 	}
@@ -87,4 +79,20 @@ public class Person {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	/**
+	 * @return the sAMAccountName
+	 */
+	public String getsAMAccountName() {
+		return sAMAccountName;
+	}
+
+	/**
+	 * @param sAMAccountName the sAMAccountName to set
+	 */
+	public void setsAMAccountName(String sAMAccountName) {
+		this.sAMAccountName = sAMAccountName;
+	}
+	
+	
 }

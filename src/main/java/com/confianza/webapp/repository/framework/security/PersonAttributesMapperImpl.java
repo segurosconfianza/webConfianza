@@ -41,7 +41,14 @@ public class PersonAttributesMapperImpl implements PersonAttributesMapper,Attrib
 	public Person mapFromAttributes(Attributes attrs) throws NamingException {	    	     	
    	 try{
    		 Person person = new Person();
-	         try{
+	   		 try{
+		       	 person.setsAMAccountName((String)attrs.get("sAMAccountName").get());
+	         }
+		        catch(Exception e){
+		   		 System.out.println("Error en el param sAMAccountName");
+		   		 e.printStackTrace();
+		   	 }
+   		 	 try{
 	        	 person.setFullName((String)attrs.get("cn").get());
 	         }
 	         catch(Exception e){
@@ -79,20 +86,6 @@ public class PersonAttributesMapperImpl implements PersonAttributesMapper,Attrib
 	    		 System.out.println("Error en el param memberOf");
 	    		 e.printStackTrace();
 	    	 }	
-	         try{
-	        	//inicializo la lista de roles
-	        	 List<String> rolesHave = new ArrayList();
-	        	 //de acuerdo a los perfiles consulto los roles asignados a ese perfil
-	        	 List<Object[]> roles=loadRoles(person.getGroups());
-	        	 //asigno cada rol encontrado a mi lista de roles
-	        	 for(Object[] obj:roles)
-	        		 rolesHave.add(obj[0]+"_"+obj[1]);
-	        	 //asigno los roles a la persona
-		         person.setRoles(rolesHave);			         
-	         }catch(Exception e){
-	    		 System.out.println("Error en la carga de roles");
-	    		 e.printStackTrace();
-	    	 }
 	         
 	         return person;
         }catch(Exception e){
@@ -103,13 +96,16 @@ public class PersonAttributesMapperImpl implements PersonAttributesMapper,Attrib
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Object[]> loadRoles(List<String> perfiles) {
-		System.out.println("loadRoles");		
+				
 		try{
-			String sql = "select frm_modurope.* "
+			String sql = "select modunomb, ropenomb "
 					   + "from frm_perfil "
 					   + "join frm_perfmodu on (pemopefi=peficons) "
 					   + "join frm_modurope on (morocons=pemomoro) "
+					   + "join frm_roleperm on (ropecons=mororope) "
+					   + "join frm_modulo   on (moducons=moromodu) "
 					   + "where pefinomb in (:perfiles)";
 						
 			Query query = getSession().createSQLQuery(sql)					
@@ -120,6 +116,6 @@ public class PersonAttributesMapperImpl implements PersonAttributesMapper,Attrib
 			e.printStackTrace();
 			return null;
 		}
-	}
+	}	
 	
 }

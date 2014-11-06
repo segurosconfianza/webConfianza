@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.confianza.webapp.repository.framework.security.Person;
 import com.confianza.webapp.repository.framework.security.PersonAttributesMapperImpl;
@@ -20,9 +21,13 @@ import com.confianza.webapp.repository.framework.security.PersonAttributesMapper
 public class AutenticateImpl implements AuthenticationProvider {
 
 	@Autowired
-	private LdapTemplate ldapTemplate;
+	private LdapTemplate ldapTemplate;	
 	
+	@Autowired
+	private RolService rolService;
+
 	@Override
+	@Transactional
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException  {
 		
 		String username = authentication.getName();
@@ -38,6 +43,12 @@ public class AutenticateImpl implements AuthenticationProvider {
 			lista =  ldapTemplate.search(query().	  
 	        		 filter("(&(objectClass=person)(sAMAccountName="+username+"))"),
 	        		 new PersonAttributesMapperImpl());
+			
+			Person persona=lista.get(0);
+			List<Object[]> roles=rolService.loadRoles(persona.getGroups());
+			if(roles!=null)
+				for(Object[] obj:roles)
+					autorities.add(new SimpleGrantedAuthority(obj[0].toString()+"_"+obj[1].toString()));
 			
 			return new UsernamePasswordAuthenticationToken(username, password, autorities);
 		}
@@ -61,6 +72,20 @@ public class AutenticateImpl implements AuthenticationProvider {
 	 */
 	public void setLdapTemplate(LdapTemplate ldapTemplate) {
 		this.ldapTemplate = ldapTemplate;
+	}
+	
+	/**
+	 * @return the rolService
+	 */
+	public RolService getRolService() {
+		return rolService;
+	}
+
+	/**
+	 * @param rolService the rolService to set
+	 */
+	public void setRolService(RolService rolService) {
+		this.rolService = rolService;
 	}
 
 	@Override
