@@ -17,8 +17,6 @@ import org.springframework.ldap.core.DistinguishedName;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.confianza.webapp.repository.framework.base.RolDao;
-
 @Repository
 public class PersonAttributesMapperImpl implements PersonAttributesMapper,AttributesMapper<Person>{
 	

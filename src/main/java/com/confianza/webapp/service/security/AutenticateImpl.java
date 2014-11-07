@@ -27,7 +27,6 @@ public class AutenticateImpl implements AuthenticationProvider {
 	private RolService rolService;
 
 	@Override
-	@Transactional
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException  {
 		
 		String username = authentication.getName();

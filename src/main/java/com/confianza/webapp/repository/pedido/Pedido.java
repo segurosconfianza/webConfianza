@@ -1,4 +1,4 @@
-package com.confianza.webapp.repository;
+package com.confianza.webapp.repository.pedido;
 
 import java.util.Date;
 

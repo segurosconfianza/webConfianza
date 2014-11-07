@@ -37,7 +37,7 @@ public class FrmSesion {
 	protected Long sesicons; 
 	 
 	@Column(name = "SESIUSUA")
-	protected Long sesiusua; 
+	protected String sesiusua; 
 	 
 	@Column(name = "SESIFECR")
 	protected Date sesifecr; 
@@ -57,11 +57,11 @@ public class FrmSesion {
 		this.sesicons = sesicons;
 	}
 
-	public Long getSesiusua(){
+	public String getSesiusua(){
 		return sesiusua;
 	}
 	
-	public void setSesiusua(Long sesiusua){
+	public void setSesiusua(String sesiusua){
 		this.sesiusua = sesiusua;
 	}
 

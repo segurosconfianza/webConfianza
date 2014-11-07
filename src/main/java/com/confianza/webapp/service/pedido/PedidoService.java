@@ -1,9 +1,9 @@
-package com.confianza.webapp.service;
+package com.confianza.webapp.service.pedido;
 
 import java.util.List;
 import java.util.Map;
 
-import com.confianza.webapp.repository.Pedido;
+import com.confianza.webapp.repository.pedido.Pedido;
 
 
 public interface PedidoService {

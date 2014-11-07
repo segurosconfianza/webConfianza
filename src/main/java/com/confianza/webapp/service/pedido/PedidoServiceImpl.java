@@ -1,4 +1,4 @@
-package com.confianza.webapp.service;
+package com.confianza.webapp.service.pedido;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.confianza.webapp.repository.Pedido;
-import com.confianza.webapp.repository.PedidoRepository;
+import com.confianza.webapp.repository.pedido.Pedido;
+import com.confianza.webapp.repository.pedido.PedidoRepository;
 
 
 @Service

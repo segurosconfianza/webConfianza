@@ -23,10 +23,10 @@ import javax.persistence.TableGenerator;
 @Entity
 @Table(name = "FRM_PERFMODU")
 public class FrmPerfmodu {
-	@Id 
+	 
 	@Column(name = "PEMOPEFI")
 	protected Long pemopefi; 
-	
+	 
 	@Column(name = "PEMOMORO")
 	protected Long pemomoro; 
 
