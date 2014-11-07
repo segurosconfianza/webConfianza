@@ -1,0 +1,21 @@
+body {
+	background-image: url('../img/fondo.jpg');	
+	background-repeat:no-repeat;
+	background-size: cover;
+}
+
+h1 {
+	font-size:500%;	
+}
+
+.formulario {
+	position: absolute;
+	left: 5%;
+	bottom: 10%;
+	min-width: 40%;
+}
+
+.container {
+  width: 75%;
+  .center-block();
+}
