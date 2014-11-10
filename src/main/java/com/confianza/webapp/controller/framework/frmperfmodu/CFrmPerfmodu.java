@@ -19,45 +19,45 @@ import com.confianza.webapp.repository.framework.frmperfmodu.FrmPerfmodu;
 @RequestMapping("/FrmPerfmodu")
 public class CFrmPerfmodu {
 
-	private FrmPerfmoduService frmperfmoduService;
+	private FrmPerfmoduService frmPerfmoduService;
 	
 	@Autowired
 	public CFrmPerfmodu(FrmPerfmoduService frmperfmoduService) {
-		this.frmperfmoduService = frmperfmoduService;
+		this.frmPerfmoduService = frmperfmoduService;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public FrmPerfmodu list(Long id){
 		
-		return this.frmperfmoduService.list(id);
+		return this.frmPerfmoduService.list(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FrmPerfmodu> listAll(){
 	
-		return this.frmperfmoduService.listAll();
+		return this.frmPerfmoduService.listAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public FrmPerfmodu update(Long id){
-		return this.frmperfmoduService.update(id);
+		return this.frmPerfmoduService.update(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void delete(Long id){
-		this.frmperfmoduService.delete(id);
+		this.frmPerfmoduService.delete(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public FrmPerfmodu insert(@RequestBody FrmPerfmodu frmperfmodu){
-		return this.frmperfmoduService.insert(frmperfmodu);
+		return this.frmPerfmoduService.insert(frmperfmodu);
 	}
 }

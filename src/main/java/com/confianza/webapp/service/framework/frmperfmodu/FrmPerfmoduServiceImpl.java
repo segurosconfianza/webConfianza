@@ -11,10 +11,12 @@ package com.confianza.webapp.service.framework.frmperfmodu;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmperfmodu.FrmPerfmodu;
 import com.confianza.webapp.repository.framework.frmperfmodu.FrmPerfmoduRepository;
 
+@Service
 public class FrmPerfmoduServiceImpl implements FrmPerfmoduService{
 	
 	@Autowired

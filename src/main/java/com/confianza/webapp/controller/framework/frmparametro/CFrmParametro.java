@@ -19,45 +19,45 @@ import com.confianza.webapp.repository.framework.frmparametro.FrmParametro;
 @RequestMapping("/FrmParametro")
 public class CFrmParametro {
 
-	private FrmParametroService frmparametroService;
+	private FrmParametroService frmParametroService;
 	
 	@Autowired
 	public CFrmParametro(FrmParametroService frmparametroService) {
-		this.frmparametroService = frmparametroService;
+		this.frmParametroService = frmparametroService;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public FrmParametro list(Long id){
 		
-		return this.frmparametroService.list(id);
+		return this.frmParametroService.list(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FrmParametro> listAll(){
 	
-		return this.frmparametroService.listAll();
+		return this.frmParametroService.listAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public FrmParametro update(Long id){
-		return this.frmparametroService.update(id);
+		return this.frmParametroService.update(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void delete(Long id){
-		this.frmparametroService.delete(id);
+		this.frmParametroService.delete(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public FrmParametro insert(@RequestBody FrmParametro frmparametro){
-		return this.frmparametroService.insert(frmparametro);
+		return this.frmParametroService.insert(frmparametro);
 	}
 }

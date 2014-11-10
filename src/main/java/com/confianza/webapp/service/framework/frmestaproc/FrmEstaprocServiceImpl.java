@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmestaproc;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmestaproc.FrmEstaproc;
 import com.confianza.webapp.repository.framework.frmestaproc.FrmEstaprocRepository;
 
+@Service
 public class FrmEstaprocServiceImpl implements FrmEstaprocService{
 	
 	@Autowired
-	private FrmEstaprocRepository frmestaprocRepository;
+	private FrmEstaprocRepository frmEstaprocRepository;
 	
 	/**
 	 * @return the frmestaprocRepository
 	 */
 	public FrmEstaprocRepository getFrmEstaprocRepository() {
-		return frmestaprocRepository;
+		return frmEstaprocRepository;
 	}
 
 	/**
 	 * @param frmestaprocRepository the frmestaprocRepository to set
 	 */
 	public void setFrmEstaprocRepository(FrmEstaprocRepository frmestaprocRepository) {
-		this.frmestaprocRepository = frmestaprocRepository;
+		this.frmEstaprocRepository = frmestaprocRepository;
 	}
 	
 	@Override
 	public FrmEstaproc list(Long id){
-		return frmestaprocRepository.list(id);
+		return frmEstaprocRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmEstaproc> listAll(){
-		return frmestaprocRepository.listAll();
+		return frmEstaprocRepository.listAll();
 	}	
 	
 	@Override
 	public FrmEstaproc update(Long id){
-		return frmestaprocRepository.update(id);
+		return frmEstaprocRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmestaprocRepository.delete(id);
+		frmEstaprocRepository.delete(id);
 	}
 	
 	@Override
 	public FrmEstaproc insert(FrmEstaproc frmestaproc){
-		return frmestaprocRepository.insert(frmestaproc);
+		return frmEstaprocRepository.insert(frmestaproc);
 	}
 	
 }

@@ -2,17 +2,12 @@ package com.confianza.webapp.controller.framework.frmmenu;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.confianza.webapp.service.framework.frmmenu.FrmmenuService;
 
@@ -20,11 +15,11 @@ import com.confianza.webapp.service.framework.frmmenu.FrmmenuService;
 @RequestMapping("/Frmmenu")
 public class CFrmmenu {
 
-	private FrmmenuService frmmenuService;
+	private FrmmenuService frmMenuService;
 	
 	@Autowired
 	public CFrmmenu(FrmmenuService frmmenuService) {
-		this.frmmenuService = frmmenuService;
+		this.frmMenuService = frmmenuService;
 	}
 
 	@RequestMapping("/")
@@ -32,11 +27,10 @@ public class CFrmmenu {
 		return "../../menu";
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)	
 	@ResponseBody
 	public List<Object[]> loadMenu(){
-		
-		return frmmenuService.loadMenu();
+		return frmMenuService.loadMenu();
 	}
 		
 }

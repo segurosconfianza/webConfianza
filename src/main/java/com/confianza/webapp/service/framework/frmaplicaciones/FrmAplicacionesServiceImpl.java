@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmaplicaciones;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmaplicaciones.FrmAplicaciones;
 import com.confianza.webapp.repository.framework.frmaplicaciones.FrmAplicacionesRepository;
 
+@Service
 public class FrmAplicacionesServiceImpl implements FrmAplicacionesService{
 	
 	@Autowired
-	private FrmAplicacionesRepository frmaplicacionesRepository;
+	private FrmAplicacionesRepository frmAplicacionesRepository;
 	
 	/**
 	 * @return the frmaplicacionesRepository
 	 */
 	public FrmAplicacionesRepository getFrmAplicacionesRepository() {
-		return frmaplicacionesRepository;
+		return frmAplicacionesRepository;
 	}
 
 	/**
 	 * @param frmaplicacionesRepository the frmaplicacionesRepository to set
 	 */
 	public void setFrmAplicacionesRepository(FrmAplicacionesRepository frmaplicacionesRepository) {
-		this.frmaplicacionesRepository = frmaplicacionesRepository;
+		this.frmAplicacionesRepository = frmaplicacionesRepository;
 	}
 	
 	@Override
 	public FrmAplicaciones list(Long id){
-		return frmaplicacionesRepository.list(id);
+		return frmAplicacionesRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmAplicaciones> listAll(){
-		return frmaplicacionesRepository.listAll();
+		return frmAplicacionesRepository.listAll();
 	}	
 	
 	@Override
 	public FrmAplicaciones update(Long id){
-		return frmaplicacionesRepository.update(id);
+		return frmAplicacionesRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmaplicacionesRepository.delete(id);
+		frmAplicacionesRepository.delete(id);
 	}
 	
 	@Override
 	public FrmAplicaciones insert(FrmAplicaciones frmaplicaciones){
-		return frmaplicacionesRepository.insert(frmaplicaciones);
+		return frmAplicacionesRepository.insert(frmaplicaciones);
 	}
 	
 }

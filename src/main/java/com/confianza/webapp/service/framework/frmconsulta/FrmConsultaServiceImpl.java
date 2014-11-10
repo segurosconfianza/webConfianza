@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmconsulta;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmconsulta.FrmConsulta;
 import com.confianza.webapp.repository.framework.frmconsulta.FrmConsultaRepository;
 
+@Service
 public class FrmConsultaServiceImpl implements FrmConsultaService{
 	
 	@Autowired
-	private FrmConsultaRepository frmconsultaRepository;
+	private FrmConsultaRepository frmConsultaRepository;
 	
 	/**
 	 * @return the frmconsultaRepository
 	 */
 	public FrmConsultaRepository getFrmConsultaRepository() {
-		return frmconsultaRepository;
+		return frmConsultaRepository;
 	}
 
 	/**
 	 * @param frmconsultaRepository the frmconsultaRepository to set
 	 */
 	public void setFrmConsultaRepository(FrmConsultaRepository frmconsultaRepository) {
-		this.frmconsultaRepository = frmconsultaRepository;
+		this.frmConsultaRepository = frmconsultaRepository;
 	}
 	
 	@Override
 	public FrmConsulta list(Long id){
-		return frmconsultaRepository.list(id);
+		return frmConsultaRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmConsulta> listAll(){
-		return frmconsultaRepository.listAll();
+		return frmConsultaRepository.listAll();
 	}	
 	
 	@Override
 	public FrmConsulta update(Long id){
-		return frmconsultaRepository.update(id);
+		return frmConsultaRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmconsultaRepository.delete(id);
+		frmConsultaRepository.delete(id);
 	}
 	
 	@Override
 	public FrmConsulta insert(FrmConsulta frmconsulta){
-		return frmconsultaRepository.insert(frmconsulta);
+		return frmConsultaRepository.insert(frmconsulta);
 	}
 	
 }

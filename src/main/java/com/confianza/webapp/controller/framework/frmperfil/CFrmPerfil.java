@@ -19,45 +19,45 @@ import com.confianza.webapp.repository.framework.frmperfil.FrmPerfil;
 @RequestMapping("/FrmPerfil")
 public class CFrmPerfil {
 
-	private FrmPerfilService frmperfilService;
+	private FrmPerfilService frmPerfilService;
 	
 	@Autowired
 	public CFrmPerfil(FrmPerfilService frmperfilService) {
-		this.frmperfilService = frmperfilService;
+		this.frmPerfilService = frmperfilService;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public FrmPerfil list(Long id){
 		
-		return this.frmperfilService.list(id);
+		return this.frmPerfilService.list(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FrmPerfil> listAll(){
 	
-		return this.frmperfilService.listAll();
+		return this.frmPerfilService.listAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public FrmPerfil update(Long id){
-		return this.frmperfilService.update(id);
+		return this.frmPerfilService.update(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void delete(Long id){
-		this.frmperfilService.delete(id);
+		this.frmPerfilService.delete(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public FrmPerfil insert(@RequestBody FrmPerfil frmperfil){
-		return this.frmperfilService.insert(frmperfil);
+		return this.frmPerfilService.insert(frmperfil);
 	}
 }

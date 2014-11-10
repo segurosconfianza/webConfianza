@@ -19,45 +19,45 @@ import com.confianza.webapp.repository.framework.frmauditoria.FrmAuditoria;
 @RequestMapping("/FrmAuditoria")
 public class CFrmAuditoria {
 
-	private FrmAuditoriaService frmauditoriaService;
+	private FrmAuditoriaService frmAuditoriaService;
 	
 	@Autowired
 	public CFrmAuditoria(FrmAuditoriaService frmauditoriaService) {
-		this.frmauditoriaService = frmauditoriaService;
+		this.frmAuditoriaService = frmauditoriaService;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public FrmAuditoria list(Long id){
 		
-		return this.frmauditoriaService.list(id);
+		return this.frmAuditoriaService.list(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FrmAuditoria> listAll(){
 	
-		return this.frmauditoriaService.listAll();
+		return this.frmAuditoriaService.listAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public FrmAuditoria update(Long id){
-		return this.frmauditoriaService.update(id);
+		return this.frmAuditoriaService.update(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void delete(Long id){
-		this.frmauditoriaService.delete(id);
+		this.frmAuditoriaService.delete(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public FrmAuditoria insert(@RequestBody FrmAuditoria frmauditoria){
-		return this.frmauditoriaService.insert(frmauditoria);
+		return this.frmAuditoriaService.insert(frmauditoria);
 	}
 }

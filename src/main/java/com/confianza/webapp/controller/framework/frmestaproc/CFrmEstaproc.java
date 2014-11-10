@@ -19,45 +19,45 @@ import com.confianza.webapp.repository.framework.frmestaproc.FrmEstaproc;
 @RequestMapping("/FrmEstaproc")
 public class CFrmEstaproc {
 
-	private FrmEstaprocService frmestaprocService;
+	private FrmEstaprocService frmEstaprocService;
 	
 	@Autowired
 	public CFrmEstaproc(FrmEstaprocService frmestaprocService) {
-		this.frmestaprocService = frmestaprocService;
+		this.frmEstaprocService = frmestaprocService;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public FrmEstaproc list(Long id){
 		
-		return this.frmestaprocService.list(id);
+		return this.frmEstaprocService.list(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FrmEstaproc> listAll(){
 	
-		return this.frmestaprocService.listAll();
+		return this.frmEstaprocService.listAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public FrmEstaproc update(Long id){
-		return this.frmestaprocService.update(id);
+		return this.frmEstaprocService.update(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void delete(Long id){
-		this.frmestaprocService.delete(id);
+		this.frmEstaprocService.delete(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public FrmEstaproc insert(@RequestBody FrmEstaproc frmestaproc){
-		return this.frmestaprocService.insert(frmestaproc);
+		return this.frmEstaprocService.insert(frmestaproc);
 	}
 }

@@ -19,45 +19,45 @@ import com.confianza.webapp.repository.framework.frmsesion.FrmSesion;
 @RequestMapping("/FrmSesion")
 public class CFrmSesion {
 
-	private FrmSesionService frmsesionService;
+	private FrmSesionService frmSesionService;
 	
 	@Autowired
 	public CFrmSesion(FrmSesionService frmsesionService) {
-		this.frmsesionService = frmsesionService;
+		this.frmSesionService = frmsesionService;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public FrmSesion list(Long id){
 		
-		return this.frmsesionService.list(id);
+		return this.frmSesionService.list(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FrmSesion> listAll(){
 	
-		return this.frmsesionService.listAll();
+		return this.frmSesionService.listAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public FrmSesion update(Long id){
-		return this.frmsesionService.update(id);
+		return this.frmSesionService.update(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void delete(Long id){
-		this.frmsesionService.delete(id);
+		this.frmSesionService.delete(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public FrmSesion insert(@RequestBody FrmSesion frmsesion){
-		return this.frmsesionService.insert(frmsesion);
+		return this.frmSesionService.insert(frmsesion);
 	}
 }

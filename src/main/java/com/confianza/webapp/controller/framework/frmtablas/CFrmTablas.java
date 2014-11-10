@@ -19,45 +19,45 @@ import com.confianza.webapp.repository.framework.frmtablas.FrmTablas;
 @RequestMapping("/FrmTablas")
 public class CFrmTablas {
 
-	private FrmTablasService frmtablasService;
+	private FrmTablasService frmTablasService;
 	
 	@Autowired
 	public CFrmTablas(FrmTablasService frmtablasService) {
-		this.frmtablasService = frmtablasService;
+		this.frmTablasService = frmtablasService;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public FrmTablas list(Long id){
 		
-		return this.frmtablasService.list(id);
+		return this.frmTablasService.list(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FrmTablas> listAll(){
 	
-		return this.frmtablasService.listAll();
+		return this.frmTablasService.listAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public FrmTablas update(Long id){
-		return this.frmtablasService.update(id);
+		return this.frmTablasService.update(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void delete(Long id){
-		this.frmtablasService.delete(id);
+		this.frmTablasService.delete(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public FrmTablas insert(@RequestBody FrmTablas frmtablas){
-		return this.frmtablasService.insert(frmtablas);
+		return this.frmTablasService.insert(frmtablas);
 	}
 }

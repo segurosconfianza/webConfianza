@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmpkid;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmpkid.FrmPkid;
 import com.confianza.webapp.repository.framework.frmpkid.FrmPkidRepository;
 
+@Service
 public class FrmPkidServiceImpl implements FrmPkidService{
 	
 	@Autowired
-	private FrmPkidRepository frmpkidRepository;
+	private FrmPkidRepository frmPkidRepository;
 	
 	/**
 	 * @return the frmpkidRepository
 	 */
 	public FrmPkidRepository getFrmPkidRepository() {
-		return frmpkidRepository;
+		return frmPkidRepository;
 	}
 
 	/**
 	 * @param frmpkidRepository the frmpkidRepository to set
 	 */
 	public void setFrmPkidRepository(FrmPkidRepository frmpkidRepository) {
-		this.frmpkidRepository = frmpkidRepository;
+		this.frmPkidRepository = frmpkidRepository;
 	}
 	
 	@Override
 	public FrmPkid list(Long id){
-		return frmpkidRepository.list(id);
+		return frmPkidRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmPkid> listAll(){
-		return frmpkidRepository.listAll();
+		return frmPkidRepository.listAll();
 	}	
 	
 	@Override
 	public FrmPkid update(Long id){
-		return frmpkidRepository.update(id);
+		return frmPkidRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmpkidRepository.delete(id);
+		frmPkidRepository.delete(id);
 	}
 	
 	@Override
 	public FrmPkid insert(FrmPkid frmpkid){
-		return frmpkidRepository.insert(frmpkid);
+		return frmPkidRepository.insert(frmpkid);
 	}
 	
 }

@@ -23,6 +23,18 @@ import javax.persistence.TableGenerator;
 @Entity
 @Table(name = "FRM_PERFMODU")
 public class FrmPerfmodu {
+	@Id 
+	// Habilite este codigo para generar automaticamente la llave primaria esta depende de una tabla
+	@TableGenerator(name = "FRM_PERFMODU_GEN", //<= nombre de la tabla con el cual se va a identificar la llave
+	                 table = "FRM_PKID",              //<= Este string define la tabla dond se almacenan el consecutivo
+	                 pkColumnName="PKIDNOMB",         //<= NOMBRE DE LA LLAVE PRIMARIA DE LA TABLA    
+	                 valueColumnName="PKIDVALU",      //<= Valor del consecutivo en el que va la llave primaria
+	                 pkColumnValue="FRM_PERFMODU_PK", 
+	                 initialValue = 1,                //<= Valor inicial de la llave primario
+	                 allocationSize = 1)              //<= Valor a buscar por medio de la llave primaria
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "FRM_PERFMODU_GEN")  
+	@Column(name = "PEMOCONS")
+	protected Long pemocons; 
 	 
 	@Column(name = "PEMOPEFI")
 	protected Long pemopefi; 
@@ -32,6 +44,14 @@ public class FrmPerfmodu {
 
 	public FrmPerfmodu(){
 	
+	}
+
+	public Long getPemocons(){
+		return pemocons;
+	}
+	
+	public void setPemocons(Long pemocons){
+		this.pemocons = pemocons;
 	}
 
 	public Long getPemopefi(){
@@ -52,11 +72,12 @@ public class FrmPerfmodu {
 
 
 	static public String[] getNames(){
-		return new String[]{ "PEMOPEFI", "PEMOMORO" };
+		return new String[]{ "PEMOCONS", "PEMOPEFI", "PEMOMORO" };
 	}		
 	
 	public String toString(){
-		return " PEMOPEFI: "+ this.pemopefi 
+		return " PEMOCONS: "+ this.pemocons 
+			+" PEMOPEFI: "+ this.pemopefi 
 			+" PEMOMORO: "+ this.pemomoro ;
 	}
 }

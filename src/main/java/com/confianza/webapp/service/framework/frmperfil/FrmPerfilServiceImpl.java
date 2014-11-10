@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmperfil;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmperfil.FrmPerfil;
 import com.confianza.webapp.repository.framework.frmperfil.FrmPerfilRepository;
 
+@Service
 public class FrmPerfilServiceImpl implements FrmPerfilService{
 	
 	@Autowired
-	private FrmPerfilRepository frmperfilRepository;
+	private FrmPerfilRepository frmPerfilRepository;
 	
 	/**
 	 * @return the frmperfilRepository
 	 */
 	public FrmPerfilRepository getFrmPerfilRepository() {
-		return frmperfilRepository;
+		return frmPerfilRepository;
 	}
 
 	/**
 	 * @param frmperfilRepository the frmperfilRepository to set
 	 */
 	public void setFrmPerfilRepository(FrmPerfilRepository frmperfilRepository) {
-		this.frmperfilRepository = frmperfilRepository;
+		this.frmPerfilRepository = frmperfilRepository;
 	}
 	
 	@Override
 	public FrmPerfil list(Long id){
-		return frmperfilRepository.list(id);
+		return frmPerfilRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmPerfil> listAll(){
-		return frmperfilRepository.listAll();
+		return frmPerfilRepository.listAll();
 	}	
 	
 	@Override
 	public FrmPerfil update(Long id){
-		return frmperfilRepository.update(id);
+		return frmPerfilRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmperfilRepository.delete(id);
+		frmPerfilRepository.delete(id);
 	}
 	
 	@Override
 	public FrmPerfil insert(FrmPerfil frmperfil){
-		return frmperfilRepository.insert(frmperfil);
+		return frmPerfilRepository.insert(frmperfil);
 	}
 	
 }

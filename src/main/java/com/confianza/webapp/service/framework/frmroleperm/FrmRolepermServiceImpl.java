@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmroleperm;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmroleperm.FrmRoleperm;
 import com.confianza.webapp.repository.framework.frmroleperm.FrmRolepermRepository;
 
+@Service
 public class FrmRolepermServiceImpl implements FrmRolepermService{
 	
 	@Autowired
-	private FrmRolepermRepository frmrolepermRepository;
+	private FrmRolepermRepository frmRolepermRepository;
 	
 	/**
 	 * @return the frmrolepermRepository
 	 */
 	public FrmRolepermRepository getFrmRolepermRepository() {
-		return frmrolepermRepository;
+		return frmRolepermRepository;
 	}
 
 	/**
 	 * @param frmrolepermRepository the frmrolepermRepository to set
 	 */
 	public void setFrmRolepermRepository(FrmRolepermRepository frmrolepermRepository) {
-		this.frmrolepermRepository = frmrolepermRepository;
+		this.frmRolepermRepository = frmrolepermRepository;
 	}
 	
 	@Override
 	public FrmRoleperm list(Long id){
-		return frmrolepermRepository.list(id);
+		return frmRolepermRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmRoleperm> listAll(){
-		return frmrolepermRepository.listAll();
+		return frmRolepermRepository.listAll();
 	}	
 	
 	@Override
 	public FrmRoleperm update(Long id){
-		return frmrolepermRepository.update(id);
+		return frmRolepermRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmrolepermRepository.delete(id);
+		frmRolepermRepository.delete(id);
 	}
 	
 	@Override
 	public FrmRoleperm insert(FrmRoleperm frmroleperm){
-		return frmrolepermRepository.insert(frmroleperm);
+		return frmRolepermRepository.insert(frmroleperm);
 	}
 	
 }

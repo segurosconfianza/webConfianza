@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmlog;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmlog.FrmLog;
 import com.confianza.webapp.repository.framework.frmlog.FrmLogRepository;
 
+@Service
 public class FrmLogServiceImpl implements FrmLogService{
 	
 	@Autowired
-	private FrmLogRepository frmlogRepository;
+	private FrmLogRepository frmLogRepository;
 	
 	/**
 	 * @return the frmlogRepository
 	 */
 	public FrmLogRepository getFrmLogRepository() {
-		return frmlogRepository;
+		return frmLogRepository;
 	}
 
 	/**
 	 * @param frmlogRepository the frmlogRepository to set
 	 */
 	public void setFrmLogRepository(FrmLogRepository frmlogRepository) {
-		this.frmlogRepository = frmlogRepository;
+		this.frmLogRepository = frmlogRepository;
 	}
 	
 	@Override
 	public FrmLog list(Long id){
-		return frmlogRepository.list(id);
+		return frmLogRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmLog> listAll(){
-		return frmlogRepository.listAll();
+		return frmLogRepository.listAll();
 	}	
 	
 	@Override
 	public FrmLog update(Long id){
-		return frmlogRepository.update(id);
+		return frmLogRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmlogRepository.delete(id);
+		frmLogRepository.delete(id);
 	}
 	
 	@Override
 	public FrmLog insert(FrmLog frmlog){
-		return frmlogRepository.insert(frmlog);
+		return frmLogRepository.insert(frmlog);
 	}
 	
 }

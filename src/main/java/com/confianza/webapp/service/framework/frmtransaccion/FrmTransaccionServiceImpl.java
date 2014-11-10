@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmtransaccion;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmtransaccion.FrmTransaccion;
 import com.confianza.webapp.repository.framework.frmtransaccion.FrmTransaccionRepository;
 
+@Service
 public class FrmTransaccionServiceImpl implements FrmTransaccionService{
 	
 	@Autowired
-	private FrmTransaccionRepository frmtransaccionRepository;
+	private FrmTransaccionRepository frmTransaccionRepository;
 	
 	/**
 	 * @return the frmtransaccionRepository
 	 */
 	public FrmTransaccionRepository getFrmTransaccionRepository() {
-		return frmtransaccionRepository;
+		return frmTransaccionRepository;
 	}
 
 	/**
 	 * @param frmtransaccionRepository the frmtransaccionRepository to set
 	 */
 	public void setFrmTransaccionRepository(FrmTransaccionRepository frmtransaccionRepository) {
-		this.frmtransaccionRepository = frmtransaccionRepository;
+		this.frmTransaccionRepository = frmtransaccionRepository;
 	}
 	
 	@Override
 	public FrmTransaccion list(Long id){
-		return frmtransaccionRepository.list(id);
+		return frmTransaccionRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmTransaccion> listAll(){
-		return frmtransaccionRepository.listAll();
+		return frmTransaccionRepository.listAll();
 	}	
 	
 	@Override
 	public FrmTransaccion update(Long id){
-		return frmtransaccionRepository.update(id);
+		return frmTransaccionRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmtransaccionRepository.delete(id);
+		frmTransaccionRepository.delete(id);
 	}
 	
 	@Override
 	public FrmTransaccion insert(FrmTransaccion frmtransaccion){
-		return frmtransaccionRepository.insert(frmtransaccion);
+		return frmTransaccionRepository.insert(frmtransaccion);
 	}
 	
 }

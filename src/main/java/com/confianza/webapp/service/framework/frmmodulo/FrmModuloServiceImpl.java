@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmmodulo;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmmodulo.FrmModulo;
 import com.confianza.webapp.repository.framework.frmmodulo.FrmModuloRepository;
 
+@Service
 public class FrmModuloServiceImpl implements FrmModuloService{
 	
 	@Autowired
-	private FrmModuloRepository frmmoduloRepository;
+	private FrmModuloRepository frmModuloRepository;
 	
 	/**
 	 * @return the frmmoduloRepository
 	 */
 	public FrmModuloRepository getFrmModuloRepository() {
-		return frmmoduloRepository;
+		return frmModuloRepository;
 	}
 
 	/**
 	 * @param frmmoduloRepository the frmmoduloRepository to set
 	 */
 	public void setFrmModuloRepository(FrmModuloRepository frmmoduloRepository) {
-		this.frmmoduloRepository = frmmoduloRepository;
+		this.frmModuloRepository = frmmoduloRepository;
 	}
 	
 	@Override
 	public FrmModulo list(Long id){
-		return frmmoduloRepository.list(id);
+		return frmModuloRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmModulo> listAll(){
-		return frmmoduloRepository.listAll();
+		return frmModuloRepository.listAll();
 	}	
 	
 	@Override
 	public FrmModulo update(Long id){
-		return frmmoduloRepository.update(id);
+		return frmModuloRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmmoduloRepository.delete(id);
+		frmModuloRepository.delete(id);
 	}
 	
 	@Override
 	public FrmModulo insert(FrmModulo frmmodulo){
-		return frmmoduloRepository.insert(frmmodulo);
+		return frmModuloRepository.insert(frmmodulo);
 	}
 	
 }

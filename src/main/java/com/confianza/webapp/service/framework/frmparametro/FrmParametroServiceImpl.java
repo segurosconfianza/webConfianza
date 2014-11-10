@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmparametro;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmparametro.FrmParametro;
 import com.confianza.webapp.repository.framework.frmparametro.FrmParametroRepository;
 
+@Service
 public class FrmParametroServiceImpl implements FrmParametroService{
 	
 	@Autowired
-	private FrmParametroRepository frmparametroRepository;
+	private FrmParametroRepository frmParametroRepository;
 	
 	/**
 	 * @return the frmparametroRepository
 	 */
 	public FrmParametroRepository getFrmParametroRepository() {
-		return frmparametroRepository;
+		return frmParametroRepository;
 	}
 
 	/**
 	 * @param frmparametroRepository the frmparametroRepository to set
 	 */
 	public void setFrmParametroRepository(FrmParametroRepository frmparametroRepository) {
-		this.frmparametroRepository = frmparametroRepository;
+		this.frmParametroRepository = frmparametroRepository;
 	}
 	
 	@Override
 	public FrmParametro list(Long id){
-		return frmparametroRepository.list(id);
+		return frmParametroRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmParametro> listAll(){
-		return frmparametroRepository.listAll();
+		return frmParametroRepository.listAll();
 	}	
 	
 	@Override
 	public FrmParametro update(Long id){
-		return frmparametroRepository.update(id);
+		return frmParametroRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmparametroRepository.delete(id);
+		frmParametroRepository.delete(id);
 	}
 	
 	@Override
 	public FrmParametro insert(FrmParametro frmparametro){
-		return frmparametroRepository.insert(frmparametro);
+		return frmParametroRepository.insert(frmparametro);
 	}
 	
 }

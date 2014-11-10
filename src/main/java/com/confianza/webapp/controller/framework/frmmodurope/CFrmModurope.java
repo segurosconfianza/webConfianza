@@ -19,45 +19,45 @@ import com.confianza.webapp.repository.framework.frmmodurope.FrmModurope;
 @RequestMapping("/FrmModurope")
 public class CFrmModurope {
 
-	private FrmModuropeService frmmoduropeService;
+	private FrmModuropeService frmModuropeService;
 	
 	@Autowired
 	public CFrmModurope(FrmModuropeService frmmoduropeService) {
-		this.frmmoduropeService = frmmoduropeService;
+		this.frmModuropeService = frmmoduropeService;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public FrmModurope list(Long id){
 		
-		return this.frmmoduropeService.list(id);
+		return this.frmModuropeService.list(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FrmModurope> listAll(){
 	
-		return this.frmmoduropeService.listAll();
+		return this.frmModuropeService.listAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public FrmModurope update(Long id){
-		return this.frmmoduropeService.update(id);
+		return this.frmModuropeService.update(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void delete(Long id){
-		this.frmmoduropeService.delete(id);
+		this.frmModuropeService.delete(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public FrmModurope insert(@RequestBody FrmModurope frmmodurope){
-		return this.frmmoduropeService.insert(frmmodurope);
+		return this.frmModuropeService.insert(frmmodurope);
 	}
 }

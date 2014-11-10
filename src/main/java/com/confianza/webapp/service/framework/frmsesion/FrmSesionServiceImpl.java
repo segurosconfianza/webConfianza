@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmsesion;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmsesion.FrmSesion;
 import com.confianza.webapp.repository.framework.frmsesion.FrmSesionRepository;
 
+@Service
 public class FrmSesionServiceImpl implements FrmSesionService{
 	
 	@Autowired
-	private FrmSesionRepository frmsesionRepository;
+	private FrmSesionRepository frmSesionRepository;
 	
 	/**
 	 * @return the frmsesionRepository
 	 */
 	public FrmSesionRepository getFrmSesionRepository() {
-		return frmsesionRepository;
+		return frmSesionRepository;
 	}
 
 	/**
 	 * @param frmsesionRepository the frmsesionRepository to set
 	 */
 	public void setFrmSesionRepository(FrmSesionRepository frmsesionRepository) {
-		this.frmsesionRepository = frmsesionRepository;
+		this.frmSesionRepository = frmsesionRepository;
 	}
 	
 	@Override
 	public FrmSesion list(Long id){
-		return frmsesionRepository.list(id);
+		return frmSesionRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmSesion> listAll(){
-		return frmsesionRepository.listAll();
+		return frmSesionRepository.listAll();
 	}	
 	
 	@Override
 	public FrmSesion update(Long id){
-		return frmsesionRepository.update(id);
+		return frmSesionRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmsesionRepository.delete(id);
+		frmSesionRepository.delete(id);
 	}
 	
 	@Override
 	public FrmSesion insert(FrmSesion frmsesion){
-		return frmsesionRepository.insert(frmsesion);
+		return frmSesionRepository.insert(frmsesion);
 	}
 	
 }

@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmauditoria;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmauditoria.FrmAuditoria;
 import com.confianza.webapp.repository.framework.frmauditoria.FrmAuditoriaRepository;
 
+@Service
 public class FrmAuditoriaServiceImpl implements FrmAuditoriaService{
 	
 	@Autowired
-	private FrmAuditoriaRepository frmauditoriaRepository;
+	private FrmAuditoriaRepository frmAuditoriaRepository;
 	
 	/**
 	 * @return the frmauditoriaRepository
 	 */
 	public FrmAuditoriaRepository getFrmAuditoriaRepository() {
-		return frmauditoriaRepository;
+		return frmAuditoriaRepository;
 	}
 
 	/**
 	 * @param frmauditoriaRepository the frmauditoriaRepository to set
 	 */
 	public void setFrmAuditoriaRepository(FrmAuditoriaRepository frmauditoriaRepository) {
-		this.frmauditoriaRepository = frmauditoriaRepository;
+		this.frmAuditoriaRepository = frmauditoriaRepository;
 	}
 	
 	@Override
 	public FrmAuditoria list(Long id){
-		return frmauditoriaRepository.list(id);
+		return frmAuditoriaRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmAuditoria> listAll(){
-		return frmauditoriaRepository.listAll();
+		return frmAuditoriaRepository.listAll();
 	}	
 	
 	@Override
 	public FrmAuditoria update(Long id){
-		return frmauditoriaRepository.update(id);
+		return frmAuditoriaRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmauditoriaRepository.delete(id);
+		frmAuditoriaRepository.delete(id);
 	}
 	
 	@Override
 	public FrmAuditoria insert(FrmAuditoria frmauditoria){
-		return frmauditoriaRepository.insert(frmauditoria);
+		return frmAuditoriaRepository.insert(frmauditoria);
 	}
 	
 }

@@ -11,52 +11,54 @@ package com.confianza.webapp.service.framework.frmi18n;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.confianza.webapp.repository.framework.frmi18n.FrmI18n;
 import com.confianza.webapp.repository.framework.frmi18n.FrmI18nRepository;
 
+@Service
 public class FrmI18nServiceImpl implements FrmI18nService{
 	
 	@Autowired
-	private FrmI18nRepository frmi18nRepository;
+	private FrmI18nRepository frmI18nRepository;
 	
 	/**
 	 * @return the frmi18nRepository
 	 */
 	public FrmI18nRepository getFrmI18nRepository() {
-		return frmi18nRepository;
+		return frmI18nRepository;
 	}
 
 	/**
 	 * @param frmi18nRepository the frmi18nRepository to set
 	 */
 	public void setFrmI18nRepository(FrmI18nRepository frmi18nRepository) {
-		this.frmi18nRepository = frmi18nRepository;
+		this.frmI18nRepository = frmi18nRepository;
 	}
 	
 	@Override
 	public FrmI18n list(Long id){
-		return frmi18nRepository.list(id);
+		return frmI18nRepository.list(id);
 	}
 	
 	@Override
 	public List<FrmI18n> listAll(){
-		return frmi18nRepository.listAll();
+		return frmI18nRepository.listAll();
 	}	
 	
 	@Override
 	public FrmI18n update(Long id){
-		return frmi18nRepository.update(id);
+		return frmI18nRepository.update(id);
 	}
 	
 	@Override
 	public void delete(Long id){
-		frmi18nRepository.delete(id);
+		frmI18nRepository.delete(id);
 	}
 	
 	@Override
 	public FrmI18n insert(FrmI18n frmi18n){
-		return frmi18nRepository.insert(frmi18n);
+		return frmI18nRepository.insert(frmi18n);
 	}
 	
 }

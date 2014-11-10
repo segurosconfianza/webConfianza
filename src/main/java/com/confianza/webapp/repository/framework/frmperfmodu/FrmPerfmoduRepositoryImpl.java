@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 public class FrmPerfmoduRepositoryImpl implements FrmPerfmoduRepository{
 	
 	@Autowired
@@ -45,9 +46,9 @@ public class FrmPerfmoduRepositoryImpl implements FrmPerfmoduRepository{
 	@Transactional
 	public FrmPerfmodu list(Long id){
 		try{
-			String sql = "select pemopefi ,pemomoro "
+			String sql = "select pemocons ,pemopefi ,pemomoro "
 					   + "from FrmPerfmodu "
-					   + "where  = :id ";
+					   + "where pemocons = :id ";
 						
 			Query query = getSession().createSQLQuery(sql)
 						 .addEntity(FrmPerfmodu.class)					
@@ -68,7 +69,7 @@ public class FrmPerfmoduRepositoryImpl implements FrmPerfmoduRepository{
 	@Transactional
 	public List<FrmPerfmodu> listAll(){
 		try{
-			String sql = "select pemopefi ,pemomoro "
+			String sql = "select pemocons ,pemopefi ,pemomoro "
 					   + "from FrmPerfmodu ";
 						
 			Query query = getSession().createSQLQuery(sql)
@@ -111,6 +112,7 @@ public class FrmPerfmoduRepositoryImpl implements FrmPerfmoduRepository{
 	
 	/**
 	 * Metodo para ingresar un registro de la tabla FrmPerfmodu
+	 * @value pemocons
 	 * @value pemopefi
 	 * @value pemomoro
 	 * @return FrmPerfmodu = objeto de la case FrmPerfmodu que contiene los datos ingresados

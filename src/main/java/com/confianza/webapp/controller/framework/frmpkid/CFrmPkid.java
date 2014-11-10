@@ -19,45 +19,45 @@ import com.confianza.webapp.repository.framework.frmpkid.FrmPkid;
 @RequestMapping("/FrmPkid")
 public class CFrmPkid {
 
-	private FrmPkidService frmpkidService;
+	private FrmPkidService frmPkidService;
 	
 	@Autowired
 	public CFrmPkid(FrmPkidService frmpkidService) {
-		this.frmpkidService = frmpkidService;
+		this.frmPkidService = frmpkidService;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public FrmPkid list(Long id){
 		
-		return this.frmpkidService.list(id);
+		return this.frmPkidService.list(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FrmPkid> listAll(){
 	
-		return this.frmpkidService.listAll();
+		return this.frmPkidService.listAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public FrmPkid update(Long id){
-		return this.frmpkidService.update(id);
+		return this.frmPkidService.update(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void delete(Long id){
-		this.frmpkidService.delete(id);
+		this.frmPkidService.delete(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public FrmPkid insert(@RequestBody FrmPkid frmpkid){
-		return this.frmpkidService.insert(frmpkid);
+		return this.frmPkidService.insert(frmpkid);
 	}
 }

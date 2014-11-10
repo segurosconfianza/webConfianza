@@ -19,45 +19,45 @@ import com.confianza.webapp.repository.framework.frmlog.FrmLog;
 @RequestMapping("/FrmLog")
 public class CFrmLog {
 
-	private FrmLogService frmlogService;
+	private FrmLogService frmLogService;
 	
 	@Autowired
 	public CFrmLog(FrmLogService frmlogService) {
-		this.frmlogService = frmlogService;
+		this.frmLogService = frmlogService;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public FrmLog list(Long id){
 		
-		return this.frmlogService.list(id);
+		return this.frmLogService.list(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FrmLog> listAll(){
 	
-		return this.frmlogService.listAll();
+		return this.frmLogService.listAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public FrmLog update(Long id){
-		return this.frmlogService.update(id);
+		return this.frmLogService.update(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void delete(Long id){
-		this.frmlogService.delete(id);
+		this.frmLogService.delete(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public FrmLog insert(@RequestBody FrmLog frmlog){
-		return this.frmlogService.insert(frmlog);
+		return this.frmLogService.insert(frmlog);
 	}
 }

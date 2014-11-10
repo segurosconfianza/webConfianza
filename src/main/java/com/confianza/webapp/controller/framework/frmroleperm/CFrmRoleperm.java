@@ -19,45 +19,45 @@ import com.confianza.webapp.repository.framework.frmroleperm.FrmRoleperm;
 @RequestMapping("/FrmRoleperm")
 public class CFrmRoleperm {
 
-	private FrmRolepermService frmrolepermService;
+	private FrmRolepermService frmRolepermService;
 	
 	@Autowired
 	public CFrmRoleperm(FrmRolepermService frmrolepermService) {
-		this.frmrolepermService = frmrolepermService;
+		this.frmRolepermService = frmrolepermService;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public FrmRoleperm list(Long id){
 		
-		return this.frmrolepermService.list(id);
+		return this.frmRolepermService.list(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<FrmRoleperm> listAll(){
 	
-		return this.frmrolepermService.listAll();
+		return this.frmRolepermService.listAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public FrmRoleperm update(Long id){
-		return this.frmrolepermService.update(id);
+		return this.frmRolepermService.update(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
 	public void delete(Long id){
-		this.frmrolepermService.delete(id);
+		this.frmRolepermService.delete(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
 	public FrmRoleperm insert(@RequestBody FrmRoleperm frmroleperm){
-		return this.frmrolepermService.insert(frmroleperm);
+		return this.frmRolepermService.insert(frmroleperm);
 	}
 }
