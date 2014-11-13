@@ -21,5 +21,5 @@ public interface FrmSesionRepository {
 	
 	public void delete(Long id);
 	
-	public FrmSesion insert(FrmSesion frmsesion);
+	public void insert(FrmSesion frmsesion);
 }

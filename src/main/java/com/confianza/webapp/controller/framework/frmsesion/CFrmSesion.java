@@ -53,11 +53,5 @@ public class CFrmSesion {
 	public void delete(Long id){
 		this.frmSesionService.delete(id);
 	}
-	
-	@RequestMapping(method = RequestMethod.POST)
-	@ResponseStatus( HttpStatus.CREATED )
-	@ResponseBody
-	public FrmSesion insert(@RequestBody FrmSesion frmsesion){
-		return this.frmSesionService.insert(frmsesion);
-	}
+		
 }

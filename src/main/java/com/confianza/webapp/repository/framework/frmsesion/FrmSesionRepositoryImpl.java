@@ -121,8 +121,7 @@ public class FrmSesionRepositoryImpl implements FrmSesionRepository{
 	 */
 	@Override
 	@Transactional
-	public FrmSesion insert(FrmSesion frmsesion){
-		//getSession().insert(frmsesion);
-		return frmsesion;
+	public void insert(FrmSesion frmsesion){
+		getSession().save(frmsesion);
 	}
 }

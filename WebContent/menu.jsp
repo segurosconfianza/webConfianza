@@ -7,7 +7,7 @@
 	</head>
 	<!-- Bootstrap core CSS -->
     <link href="lib/CSS/Base.css" rel="stylesheet">
-     <script src="lib/Angular/1.3.1/angular.min.js"></script>
+     <script src="lib/Angular/1.3.2/angular.min.js"></script>
 	<body>				
 		<nav>
 			PERMISOS :3!!

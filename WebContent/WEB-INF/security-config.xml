@@ -12,14 +12,11 @@
 		http://www.springframework.org/schema/ldap http://www.springframework.org/schema/ldap/spring-ldap.xsd">
 
 	<security:http use-expressions="true" access-denied-page="/WEB-INF/denied.jsp" >
-		<security:form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?login_error=true" default-target-url="/index.jsp" />
-		<security:intercept-url pattern="/index.jsp" access="isAuthenticated()"/>
-		<security:intercept-url pattern="/confianza/**" access="isAuthenticated()"/>
-		<security:intercept-url pattern="/confianza/Pedido" access="isAuthenticated()" />
-		<security:intercept-url pattern="/confianza/Resumen" access="hasAnyRole('ROLE_VIEWER', 'ROLE_EDITOR')" />
-		<security:intercept-url pattern="/confianza/Listado" access="hasRole('ROLE_VIEWER', 'ROLE_EDITOR')" />
+		<security:form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?login_error=true" default-target-url="/index.jsp" authentication-success-handler-ref="myAuthenticationSuccessHandler"/>
 		<security:logout invalidate-session="true" logout-url="/logout"/>
 	</security:http>
+	
+	<bean id="myAuthenticationSuccessHandler" class="com.confianza.webapp.service.security.MySimpleUrlAuthenticationSuccessHandler" />
 	
 	<ldap:context-source
           url="ldap://192.168.100.2:389"

@@ -13,16 +13,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.confianza.webapp.repository.framework.security.Person;
 import com.confianza.webapp.repository.framework.security.PersonAttributesMapperImpl;
+import com.confianza.webapp.service.framework.frmsesion.FrmSesionService;
 
 public class AutenticateImpl implements AuthenticationProvider {
 
 	@Autowired
 	private LdapTemplate ldapTemplate;	
-	
+		
 	@Autowired
 	private RolService rolService;
 

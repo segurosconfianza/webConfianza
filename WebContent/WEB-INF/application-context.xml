@@ -11,6 +11,10 @@
   
 	<context:component-scan base-package="com.confianza.webapp.*" />
 	
+	<!-- Beans generales al proyecto -->
+	<bean id="gson" class="com.google.gson.Gson" />
+	<bean id="typeConverter" class="com.confianza.webapp.utils.TypeConverter"/>
+	
  	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
  		<property name="driverClassName" value="com.mysql.jdbc.Driver"/> 
  		<property name="url" value="jdbc:mysql://localhost:3306/myprayer"/> 

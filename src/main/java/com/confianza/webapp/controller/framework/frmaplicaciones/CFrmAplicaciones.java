@@ -1,63 +1,70 @@
 package com.confianza.webapp.controller.framework.frmaplicaciones;
 
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpStatus;
+import com.google.gson.Gson;
 import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
- 
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 import com.confianza.webapp.service.framework.frmaplicaciones.FrmAplicacionesService;
 import com.confianza.webapp.repository.framework.frmaplicaciones.FrmAplicaciones;
 
 @Controller
+@EnableWebMvc
 @RequestMapping("/FrmAplicaciones")
 public class CFrmAplicaciones {
 
-	private FrmAplicacionesService frmAplicacionesService;
+	private FrmAplicacionesService frmaplicacionesService;
+	
+	@Autowired
+	Gson gson;
 	
 	@Autowired
 	public CFrmAplicaciones(FrmAplicacionesService frmaplicacionesService) {
-		this.frmAplicacionesService = frmaplicacionesService;
+		this.frmaplicacionesService = frmaplicacionesService;
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{aplicons}.json", method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
-	public FrmAplicaciones list(Long id){
+	public String list(@PathVariable("aplicons") Long aplicons){
 		
-		return this.frmAplicacionesService.list(id);
+		return gson.toJson(this.frmaplicacionesService.list(aplicons));
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/.json", method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
-	public List<FrmAplicaciones> listAll(){
+	public String listAll(){
 	
-		return this.frmAplicacionesService.listAll();
+		return gson.toJson(this.frmaplicacionesService.listAll());
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{aplicons}", method = RequestMethod.PUT)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
-	public FrmAplicaciones update(Long id){
-		return this.frmAplicacionesService.update(id);
+	public FrmAplicaciones update(@PathVariable("aplicons") Long aplicons){
+		return this.frmaplicacionesService.update(aplicons);
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{aplicons}.json", method = RequestMethod.DELETE)
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
-	public void delete(Long id){
-		this.frmAplicacionesService.delete(id);
+	public void delete(@PathVariable("aplicons") Long aplicons){
+		this.frmaplicacionesService.delete(aplicons);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, produces={"application/json"})
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
-	public FrmAplicaciones insert(@RequestBody FrmAplicaciones frmaplicaciones){
-		return this.frmAplicacionesService.insert(frmaplicaciones);
+	public String insert(@RequestBody FrmAplicaciones frmaplicaciones){
+		return gson.toJson(this.frmaplicacionesService.insert(frmaplicaciones));
 	}
 }

@@ -20,7 +20,7 @@
 	
 	<c:if test="${!empty param.login_error}">	
 			<div align="center">	
-			<p/><img src="Imagenes/candado_roto.jpg" width="40" height="40" ><span class="label label-danger">Incorreto nombre de usuario y/o contrase&ntilde;a</span>
+			<p/><img src="Imagenes/Iconos/candado_roto.jpg" width="40" height="40" ><span class="label label-danger">Incorreto nombre de usuario y/o contrase&ntilde;a</span>
 			</div>
 	</c:if>
 		

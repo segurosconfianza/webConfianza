@@ -42,8 +42,8 @@ public class FrmSesion {
 	@Column(name = "SESIFECR")
 	protected Date sesifecr; 
 	 
-	@Column(name = "SESITERM")
-	protected String sesiterm; 
+	@Column(name = "SESISESI")
+	protected String sesisesi; 
 
 	public FrmSesion(){
 	
@@ -73,23 +73,23 @@ public class FrmSesion {
 		this.sesifecr = sesifecr;
 	}
 
-	public String getSesiterm(){
-		return sesiterm;
+	public String getSesisesi(){
+		return sesisesi;
 	}
 	
-	public void setSesiterm(String sesiterm){
-		this.sesiterm = sesiterm;
+	public void setSesisesi(String sesisesi){
+		this.sesisesi = sesisesi;
 	}
 
 
 	static public String[] getNames(){
-		return new String[]{ "SESICONS", "SESIUSUA", "SESIFECR", "SESITERM" };
+		return new String[]{ "SESICONS", "SESIUSUA", "SESIFECR", "SESISESI" };
 	}		
 	
 	public String toString(){
 		return " SESICONS: "+ this.sesicons 
 			+" SESIUSUA: "+ this.sesiusua 
 			+" SESIFECR: "+ this.sesifecr 
-			+" SESITERM: "+ this.sesiterm ;
+			+" SESISESI: "+ this.sesisesi ;
 	}
 }

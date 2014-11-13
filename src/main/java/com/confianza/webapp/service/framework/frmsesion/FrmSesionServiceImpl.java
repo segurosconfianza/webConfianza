@@ -9,7 +9,9 @@ package com.confianza.webapp.service.framework.frmsesion;
   * @app		framework  
   */                          
 
+import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,8 +59,13 @@ public class FrmSesionServiceImpl implements FrmSesionService{
 	}
 	
 	@Override
-	public FrmSesion insert(FrmSesion frmsesion){
-		return frmSesionRepository.insert(frmsesion);
+	public FrmSesion insert(String usuario, String sesion){
+		FrmSesion frmsesion=new FrmSesion();
+		frmsesion.setSesiusua(usuario);
+		frmsesion.setSesisesi(sesion);
+		frmsesion.setSesifecr(new Date());
+		frmSesionRepository.insert(frmsesion);
+		return frmsesion;
 	}
 	
 }

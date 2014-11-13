@@ -9,7 +9,7 @@
     <link href="lib/CSS/Base.css" rel="stylesheet">
 	<body>				
 		<aside>
-			<img alt="banner" src="Imagenes/Confianza/Home_Banner.jpg">
+			
 			Bienvenido a Seguros Confianza
 		</aside>
 	</body>

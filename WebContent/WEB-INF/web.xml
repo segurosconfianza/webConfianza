@@ -12,6 +12,10 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/application-context.xml</param-value>
   </context-param>
+  <context-param>
+    <param-name>WEB_SERVER</param-name>
+    <param-value>http://localhost:8080/</param-value>
+  </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
@@ -27,7 +31,10 @@
     <servlet-name>confianza</servlet-name>
     <url-pattern>/confianza/*</url-pattern>
   </servlet-mapping>
-  
+  <session-config>  
+	<!-- Default to 5 minute session timeouts -->  
+	<session-timeout>15</session-timeout>  
+  </session-config> 
   <error-page>
        <error-code>404</error-code>
        <location>/WEB-INF/error/error404.html</location>

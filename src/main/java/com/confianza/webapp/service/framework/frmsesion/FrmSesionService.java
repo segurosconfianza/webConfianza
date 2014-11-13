@@ -10,6 +10,7 @@ package com.confianza.webapp.service.framework.frmsesion;
   */                          
 
 import java.util.List;
+
 import com.confianza.webapp.repository.framework.frmsesion.FrmSesion;
 
 public interface FrmSesionService{
@@ -22,6 +23,6 @@ public interface FrmSesionService{
 	
 	public void delete(Long id);
 	
-	public FrmSesion insert(FrmSesion frmsesion);
+	public FrmSesion insert(String usuario, String terminal);
 	
 }
