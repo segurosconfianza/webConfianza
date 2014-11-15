@@ -10,18 +10,21 @@ package com.confianza.webapp.service.framework.frmperfil;
   */                          
 
 import java.util.List;
+
 import com.confianza.webapp.repository.framework.frmperfil.FrmPerfil;
 
 public interface FrmPerfilService{
 	
 	public FrmPerfil list(Long id);
 	
-	public List<FrmPerfil> listAll();	
-	
 	public FrmPerfil update(Long id);
 	
 	public void delete(Long id);
 	
 	public FrmPerfil insert(FrmPerfil frmperfil);
+
+	public List<FrmPerfil> listAll(int pageSize, int page);
+
+	public int getCount();
 	
 }

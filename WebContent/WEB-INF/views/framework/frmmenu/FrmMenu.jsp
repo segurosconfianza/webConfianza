@@ -14,9 +14,9 @@
     <link  href="../../lib/CSS/angular-ui-tree.min.css" rel="stylesheet">
     
     <script>
-	    var myApp=angular.module('FrmMenuModule', ['ui.tree']);
+	    var FrmMenuApp=angular.module('FrmMenuModule', ['ui.tree']);
 	    
-	    myApp.service('FrmMenuService', function($http) {	    	
+	    FrmMenuApp.service('FrmMenuService', function($http) {	    	
 	    	this.getData = function() {
 	    		return $http({
 	    	        method: 'GET',
@@ -25,7 +25,7 @@
 	    	 }
 	    });
 	    
-	    myApp.controller('FrmMenuController', ['$scope', 'FrmMenuService', function ($scope, FrmMenuService) {
+	    FrmMenuApp.controller('FrmMenuController', ['$scope', 'FrmMenuService', function ($scope, FrmMenuService) {
 	    	$scope.oneAtATime = false;
 	    	FrmMenuService.getData().then(function(dataResponse) {
 	            console.log(dataResponse);

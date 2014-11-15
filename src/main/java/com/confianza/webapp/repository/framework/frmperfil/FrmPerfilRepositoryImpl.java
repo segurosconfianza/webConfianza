@@ -9,6 +9,7 @@ package com.confianza.webapp.repository.framework.frmperfil;
   * @app		framework  
   */                          
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -50,8 +51,7 @@ public class FrmPerfilRepositoryImpl implements FrmPerfilRepository{
 					   + "from FrmPerfil "
 					   + "where peficons = :id ";
 						
-			Query query = getSession().createSQLQuery(sql)
-						 .addEntity(FrmPerfil.class)					
+			Query query = getSession().createQuery(sql)				
 					     .setParameter("id", id);
 			return (FrmPerfil)query.uniqueResult();
 		}catch(Exception e){
@@ -67,20 +67,50 @@ public class FrmPerfilRepositoryImpl implements FrmPerfilRepository{
 	 */
 	@Override
 	@Transactional
-	public List<FrmPerfil> listAll(){
+	public List<FrmPerfil> listAll(int init, int limit){
 		try{
 			String sql = "select peficons ,pefinomb ,pefidesc ,pefifecr "
-					   + "from FrmPerfil ";
+					   + "from FrmPerfil order by peficons";
 						
-			Query query = getSession().createSQLQuery(sql)
-						 .addEntity(FrmPerfil.class);
-					     
+			Query query = getSession().createQuery(sql);
+			query.setFirstResult(init);			
+	        query.setMaxResults(limit);
+	        
 			return query.list();
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
 		}
-	}	
+	}
+	
+	/**
+	 * Metodo de consulta para los registros de la tabla FrmPerfil
+	 * @return FrmPerfil = coleccion de objetos de la case FrmPerfil que contiene los datos encontrados
+	 * @throws Exception
+	 */
+	@Override
+	@Transactional
+	public int getCount(){
+		try{
+			String sql = "select count(*) "
+					   + "from FrmPerfil ";
+						
+			Query query = getSession().createQuery(sql);
+	        
+			Iterator it = query.list().iterator();
+	        Long ret = new Long(0);
+	        
+	        if (it != null)
+		        if (it.hasNext()){
+		        	ret = (Long) it.next();
+		        }
+	        
+			return ret.intValue();
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}
+	}
 	
 	/**
 	 * Metodo para actualizar los datos de un registro de la tabla FrmPerfil por id

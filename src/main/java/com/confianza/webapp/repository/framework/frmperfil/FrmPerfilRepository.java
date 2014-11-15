@@ -15,11 +15,13 @@ public interface FrmPerfilRepository {
 	
 	public FrmPerfil list(Long id);
 	
-	public List<FrmPerfil> listAll();	
-	
 	public FrmPerfil update(Long id);
 	
 	public void delete(Long id);
 	
 	public FrmPerfil insert(FrmPerfil frmperfil);
+
+	List<FrmPerfil> listAll(int init, int limit);
+
+	int getCount();
 }

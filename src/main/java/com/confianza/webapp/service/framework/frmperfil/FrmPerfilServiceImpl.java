@@ -10,6 +10,7 @@ package com.confianza.webapp.service.framework.frmperfil;
   */                          
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +43,19 @@ public class FrmPerfilServiceImpl implements FrmPerfilService{
 	}
 	
 	@Override
-	public List<FrmPerfil> listAll(){
-		return frmPerfilRepository.listAll();
-	}	
+	public List<FrmPerfil> listAll(int pageSize, int page){
+		
+		int limit=pageSize*page;
+		int init=limit-pageSize;
+		System.out.println("init: "+init+" limit:"+limit);
+		return frmPerfilRepository.listAll(init, limit);
+	}
+	
+	@Override
+	public int getCount(){
+				
+		return frmPerfilRepository.getCount();
+	}
 	
 	@Override
 	public FrmPerfil update(Long id){
