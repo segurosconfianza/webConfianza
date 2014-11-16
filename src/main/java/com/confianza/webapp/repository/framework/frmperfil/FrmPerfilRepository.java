@@ -21,7 +21,7 @@ public interface FrmPerfilRepository {
 	
 	public FrmPerfil insert(FrmPerfil frmperfil);
 
-	List<FrmPerfil> listAll(int init, int limit);
+	public List<FrmPerfil> listAll(int init, int limit);
 
-	int getCount();
+	public int getCount();
 }

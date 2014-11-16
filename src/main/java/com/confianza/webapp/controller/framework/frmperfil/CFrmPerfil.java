@@ -10,15 +10,13 @@ import java.util.Map;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -32,9 +30,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.confianza.webapp.service.framework.frmperfil.FrmPerfilService;
-import com.confianza.webapp.utils.JSONUtil;
 import com.confianza.webapp.repository.framework.frmperfil.FrmPerfil;
-import com.confianza.webapp.repository.framework.frmperfil.FrmPerfilSerializer;
 import com.confianza.webapp.repository.framework.frmsesion.FrmSesion;
 
 @Controller
@@ -69,9 +65,6 @@ public class CFrmPerfil {
 	public String listAll(@RequestParam("pageSize") int pageSize, @RequestParam("page") int page){
 		
 		List<FrmPerfil> listAll=this.frmPerfilService.listAll(pageSize, page);
-		Type collectionType = new TypeToken<List<FrmPerfil>>(){}.getType();
-		
-		System.out.println("listAll: "+listAll.size());
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("data", listAll);

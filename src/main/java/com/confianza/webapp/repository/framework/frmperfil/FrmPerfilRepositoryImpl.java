@@ -70,11 +70,13 @@ public class FrmPerfilRepositoryImpl implements FrmPerfilRepository{
 	public List<FrmPerfil> listAll(int init, int limit){
 		try{
 			String sql = "select peficons ,pefinomb ,pefidesc ,pefifecr "
-					   + "from FrmPerfil order by peficons";
+					   + "from Frm_Perfil order by peficons";
 						
-			Query query = getSession().createQuery(sql);
-			query.setFirstResult(init);			
-	        query.setMaxResults(limit);
+			Query query = getSession().createSQLQuery(sql).addEntity(FrmPerfil.class);
+			if(init==0 && limit!=0){
+				query.setFirstResult(init);			
+				query.setMaxResults(limit);
+			}
 	        
 			return query.list();
 		}catch(Exception e){
@@ -84,8 +86,8 @@ public class FrmPerfilRepositoryImpl implements FrmPerfilRepository{
 	}
 	
 	/**
-	 * Metodo de consulta para los registros de la tabla FrmPerfil
-	 * @return FrmPerfil = coleccion de objetos de la case FrmPerfil que contiene los datos encontrados
+	 * Metodo de consulta para el conteo de los registros de la tabla FrmPerfil
+	 * @return int = cantidad de registros encontrados
 	 * @throws Exception
 	 */
 	@Override

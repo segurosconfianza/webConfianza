@@ -47,7 +47,7 @@ public class FrmPerfilServiceImpl implements FrmPerfilService{
 		
 		int limit=pageSize*page;
 		int init=limit-pageSize;
-		System.out.println("init: "+init+" limit:"+limit);
+		
 		return frmPerfilRepository.listAll(init, limit);
 	}
 	
