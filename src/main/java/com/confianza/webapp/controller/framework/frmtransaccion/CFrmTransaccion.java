@@ -1,7 +1,10 @@
 package com.confianza.webapp.controller.framework.frmtransaccion;
 
+import java.util.Date;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -12,7 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
  
+
+
+
 import com.confianza.webapp.service.framework.frmtransaccion.FrmTransaccionService;
+import com.confianza.webapp.controller.framework.frmlog.CFrmLog;
+import com.confianza.webapp.repository.framework.frmsesion.FrmSesion;
 import com.confianza.webapp.repository.framework.frmtransaccion.FrmTransaccion;
 
 @Controller
@@ -59,5 +67,14 @@ public class CFrmTransaccion {
 	@ResponseBody
 	public FrmTransaccion insert(@RequestBody FrmTransaccion frmtransaccion){
 		return this.frmTransaccionService.insert(frmtransaccion);
+	}
+	
+	public void insertLog(FrmSesion frmSesion, String tabla, String accion, String registro){
+		
+		FrmTransaccion frmTransaccion=new FrmTransaccion();
+		frmTransaccion.setTransesi(frmSesion.getSesicons());
+		frmTransaccion.setTranfecr(new Date());
+		this.frmTransaccionService.insert(frmTransaccion);
+				
 	}
 }

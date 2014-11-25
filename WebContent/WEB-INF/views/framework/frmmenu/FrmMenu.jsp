@@ -1,5 +1,6 @@
 <!doctype html>
 <%@ page language="java" contentType="text/html; charset=iso-8859-1" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html ng-app="FrmMenuModule">
   <head>
   <%

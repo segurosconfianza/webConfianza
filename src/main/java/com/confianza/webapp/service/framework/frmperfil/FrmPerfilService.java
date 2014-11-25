@@ -15,16 +15,16 @@ import com.confianza.webapp.repository.framework.frmperfil.FrmPerfil;
 
 public interface FrmPerfilService{
 	
-	public FrmPerfil list(Long id);
-	
-	public FrmPerfil update(Long id);
-	
-	public void delete(Long id);
-	
+	public FrmPerfil list(Long id);	
+
 	public FrmPerfil insert(FrmPerfil frmperfil);
 
 	public List<FrmPerfil> listAll(int pageSize, int page);
 
 	public int getCount();
+
+	public FrmPerfil update(FrmPerfil frmperfil);
+
+	public void delete(FrmPerfil frmperfil);
 	
 }

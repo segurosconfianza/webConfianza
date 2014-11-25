@@ -42,9 +42,25 @@ public class FrmI18nServiceImpl implements FrmI18nService{
 	}
 	
 	@Override
-	public List<FrmI18n> listAll(){
-		return frmI18nRepository.listAll();
+	public List<FrmI18n> listModulo(String modulo){
+		String[] modulos= modulo.split(",");
+		return frmI18nRepository.listModulo(modulos);
+	}
+	
+	@Override
+	public List<FrmI18n> listAll(int pageSize, int page){
+	
+		int limit=pageSize*page;
+		int init=limit-pageSize;
+		
+		return frmI18nRepository.listAll(init, limit);
 	}	
+	
+	@Override
+	public int getCount(){
+				
+		return frmI18nRepository.getCount();
+	}
 	
 	@Override
 	public FrmI18n update(Long id){
@@ -58,7 +74,9 @@ public class FrmI18nServiceImpl implements FrmI18nService{
 	
 	@Override
 	public FrmI18n insert(FrmI18n frmi18n){
-		return frmI18nRepository.insert(frmi18n);
+		
+		frmI18nRepository.insert(frmi18n);
+		return frmi18n;
 	}
 	
 }

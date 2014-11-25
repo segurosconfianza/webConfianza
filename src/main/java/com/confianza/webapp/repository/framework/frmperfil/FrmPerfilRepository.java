@@ -15,8 +15,6 @@ public interface FrmPerfilRepository {
 	
 	public FrmPerfil list(Long id);
 	
-	public FrmPerfil update(Long id);
-	
 	public void delete(Long id);
 	
 	public FrmPerfil insert(FrmPerfil frmperfil);
@@ -24,4 +22,8 @@ public interface FrmPerfilRepository {
 	public List<FrmPerfil> listAll(int init, int limit);
 
 	public int getCount();
+
+	public FrmPerfil update(FrmPerfil frmPerfil);
+
+	public void delete(FrmPerfil frmperfil);
 }

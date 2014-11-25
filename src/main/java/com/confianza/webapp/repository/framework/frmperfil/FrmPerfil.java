@@ -18,6 +18,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -45,6 +47,9 @@ public class FrmPerfil {
 	@Column(name = "PEFIFECR")
 	protected Date pefifecr; 
 
+	@Column(name = "PEFIESTA")
+	protected String pefiesta;
+	
 	public FrmPerfil(){
 	
 	}
@@ -61,6 +66,20 @@ public class FrmPerfil {
 		return pefinomb;
 	}
 	
+	/**
+	 * @return the pefiesta
+	 */
+	public String getPefiesta() {
+		return pefiesta;
+	}
+
+	/**
+	 * @param pefiesta the pefiesta to set
+	 */
+	public void setPefiesta(String pefiesta) {
+		this.pefiesta = pefiesta;
+	}
+
 	public void setPefinomb(String pefinomb){
 		this.pefinomb = pefinomb;
 	}
@@ -83,13 +102,14 @@ public class FrmPerfil {
 
 
 	static public String[] getNames(){
-		return new String[]{ "PEFICONS", "PEFINOMB", "PEFIDESC", "PEFIFECR" };
+		return new String[]{ "PEFICONS", "PEFINOMB", "PEFIDESC", "PEFIFECR", "PEFIESTA" };
 	}		
 	
 	public String toString(){
 		return " PEFICONS: "+ this.peficons 
 			+" PEFINOMB: "+ this.pefinomb 
 			+" PEFIDESC: "+ this.pefidesc 
-			+" PEFIFECR: "+ this.pefifecr ;
+			+" PEFIFECR: "+ this.pefifecr 
+			+" PEFIESTA: "+ this.pefiesta ;
 	}
 }

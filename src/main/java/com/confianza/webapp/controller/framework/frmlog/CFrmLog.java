@@ -1,7 +1,9 @@
 package com.confianza.webapp.controller.framework.frmlog;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -12,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
  
+
+
 import com.confianza.webapp.service.framework.frmlog.FrmLogService;
 import com.confianza.webapp.repository.framework.frmlog.FrmLog;
+import com.confianza.webapp.repository.framework.frmtransaccion.FrmTransaccion;
 
 @Controller
 @RequestMapping("/FrmLog")
@@ -59,5 +64,14 @@ public class CFrmLog {
 	@ResponseBody
 	public FrmLog insert(@RequestBody FrmLog frmlog){
 		return this.frmLogService.insert(frmlog);
+	}
+	
+	public void insert(FrmTransaccion frmTransaccion, String tabla, String accion, String registro){
+		FrmLog frmLog = new FrmLog();
+		frmLog.setSlogacci("INSERT");
+		frmLog.setSlogregi(registro);
+		frmLog.setSlogtabl(tabla);
+		frmLog.setSlogtran(frmTransaccion.getTrancons());
+		this.frmLogService.insert(frmLog);
 	}
 }

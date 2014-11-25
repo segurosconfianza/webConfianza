@@ -42,23 +42,38 @@ public class FrmPerfmoduServiceImpl implements FrmPerfmoduService{
 	}
 	
 	@Override
-	public List<FrmPerfmodu> listAll(){
-		return frmperfmoduRepository.listAll();
+	public List<Object[]> listAll(int pageSize, int page, Long pemopefi){
+		
+		int limit=pageSize*page;
+		int init=limit-pageSize;
+		
+		return frmperfmoduRepository.listAll(init, limit, pemopefi);
 	}	
 	
 	@Override
-	public FrmPerfmodu update(Long id){
-		return frmperfmoduRepository.update(id);
+	public FrmPerfmodu update(FrmPerfmodu frmperfmodu){
+		return frmperfmoduRepository.update(frmperfmodu);
 	}
 	
 	@Override
-	public void delete(Long id){
-		frmperfmoduRepository.delete(id);
+	public void delete(FrmPerfmodu frmperfmodu){
+		frmperfmoduRepository.delete(frmperfmodu);
 	}
 	
 	@Override
 	public FrmPerfmodu insert(FrmPerfmodu frmperfmodu){
 		return frmperfmoduRepository.insert(frmperfmodu);
+	}
+
+	@Override
+	public int getCount() {
+		return frmperfmoduRepository.getCount();
+	}
+	
+	@Override
+	public List<Object[]> listComboMoro(){
+				
+		return frmperfmoduRepository.listComboMoro();
 	}
 	
 }

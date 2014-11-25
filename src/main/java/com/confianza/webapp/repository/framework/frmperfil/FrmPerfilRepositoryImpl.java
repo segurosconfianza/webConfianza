@@ -47,7 +47,7 @@ public class FrmPerfilRepositoryImpl implements FrmPerfilRepository{
 	@Transactional
 	public FrmPerfil list(Long id){
 		try{
-			String sql = "select peficons ,pefinomb ,pefidesc ,pefifecr "
+			String sql = "select peficons ,pefinomb ,pefidesc ,pefifecr, pefiesta "
 					   + "from FrmPerfil "
 					   + "where peficons = :id ";
 						
@@ -69,7 +69,7 @@ public class FrmPerfilRepositoryImpl implements FrmPerfilRepository{
 	@Transactional
 	public List<FrmPerfil> listAll(int init, int limit){
 		try{
-			String sql = "select peficons ,pefinomb ,pefidesc ,pefifecr "
+			String sql = "select peficons ,pefinomb ,pefidesc ,pefifecr, pefiesta "
 					   + "from Frm_Perfil order by peficons";
 						
 			Query query = getSession().createSQLQuery(sql).addEntity(FrmPerfil.class);
@@ -122,10 +122,9 @@ public class FrmPerfilRepositoryImpl implements FrmPerfilRepository{
 	 */
 	@Override
 	@Transactional
-	public FrmPerfil update(Long id){
-		FrmPerfil frmperfil = this.list(id);
-		getSession().update(frmperfil);
-		return frmperfil;
+	public FrmPerfil update(FrmPerfil frmPerfil){
+		getSession().update(frmPerfil);
+		return frmPerfil;
 	}
 	
 	/**
@@ -154,7 +153,13 @@ public class FrmPerfilRepositoryImpl implements FrmPerfilRepository{
 	@Override
 	@Transactional
 	public FrmPerfil insert(FrmPerfil frmperfil){
-		//getSession().insert(frmperfil);
+		getSession().save(frmperfil);
 		return frmperfil;
+	}
+
+	@Override
+	public void delete(FrmPerfil frmperfil) {
+		// TODO Auto-generated method stub
+		
 	}
 }

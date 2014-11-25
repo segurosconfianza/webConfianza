@@ -1,5 +1,6 @@
 package com.confianza.webapp.controller.framework.frmmenu;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import com.google.gson.Gson;
 
 import org.springframework.http.HttpStatus;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -41,35 +43,52 @@ public class CFrmMenu {
 		this.frmMenuService = frmmenuService;
 	}
 	
+	public CFrmMenu() {
+		super();
+	}
+
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_MENU_ALL", "FRM_MENU_READ"})
 	@RequestMapping("/")
 	public String index(Model model) {
 		return "framework/frmmenu/FrmMenu";
 	}
-	
+
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_MENU_ALL", "FRM_MENU_READ"})
 	@RequestMapping(value = "/{menucons}.json", method = RequestMethod.GET, produces={"application/json"})
 	public @ResponseBody String list(@PathVariable("menucons") Long menucons){
 		
 		return gson.toJson(this.frmMenuService.list(menucons));
 	}
 	
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_MENU_ALL", "FRM_MENU_READ"})
 	@RequestMapping(value = "/listAll.json", method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
 	public String listAll(HttpServletRequest request){
 
 		//cargo los menus padres
 		List<Object[]> menu=frmMenuService.loadMenu(null);		
+		List<Map<String, Object>> menuAll;
 		
-		//cast de los menu a ser mapeados por cada campo
-		List<Map<String, Object>> menuAll = JSONUtil.toNameList(
-				new String[]{"menucons", "menuicon", "menutitu", "modudurl", "menuhijo"},menu
-		);
-		
-		//por cada menu se recorre para asignarle sus hijos
-		for(Map<String, Object> map:menuAll){
-			List<Map<String, Object>> menuhijos=loadChildren(Long.parseLong(map.get("menucons").toString()));
-			map.put("menuhijo", menuhijos);
+		if(menu!=null){
+			
+			//cast de los menu a ser mapeados por cada campo
+			menuAll = JSONUtil.toNameList(new String[]{"menucons", "menuicon", "menutitu", "modudurl", "menuhijo"},menu
+			);
+			
+			//por cada menu se recorre para asignarle sus hijos
+			for(Map<String, Object> map:menuAll){
+				List<Map<String, Object>> menuhijos=loadChildren(Long.parseLong(map.get("menucons").toString()));
+				map.put("menuhijo", menuhijos);
+			}
 		}
-		
+		else{
+			Object obj[]={0,"","No tiene permisos",null,null};
+			menu=new ArrayList<Object[]>();
+			menu.add(obj);
+			//cast de los menu a ser mapeados por cada campo
+			menuAll = JSONUtil.toNameList(new String[]{"menucons", "menuicon", "menutitu", "modudurl", "menuhijo"},menu
+			);
+		}
 		return gson.toJson(menuAll);
 	}
 

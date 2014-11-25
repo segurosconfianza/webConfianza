@@ -10,18 +10,23 @@ package com.confianza.webapp.service.framework.frmperfmodu;
   */                          
 
 import java.util.List;
+
 import com.confianza.webapp.repository.framework.frmperfmodu.FrmPerfmodu;
 
 public interface FrmPerfmoduService{
 	
-	public FrmPerfmodu list(Long id);
+	public FrmPerfmodu list(Long id);	
 	
-	public List<FrmPerfmodu> listAll();	
+	public FrmPerfmodu update(FrmPerfmodu frmperfmodu);
 	
-	public FrmPerfmodu update(Long id);
-	
-	public void delete(Long id);
+	public void delete(FrmPerfmodu frmperfmodu);
 	
 	public FrmPerfmodu insert(FrmPerfmodu frmperfmodu);
+
+	public int getCount();
+
+	public List<Object[]> listAll(int pageSize, int page, Long pemopefi);
+
+	public List<Object[]> listComboMoro();
 	
 }

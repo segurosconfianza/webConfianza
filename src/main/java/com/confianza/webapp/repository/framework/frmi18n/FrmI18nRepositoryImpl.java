@@ -9,6 +9,7 @@ package com.confianza.webapp.repository.framework.frmi18n;
   * @app		framework  
   */                          
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -61,19 +62,49 @@ public class FrmI18nRepositoryImpl implements FrmI18nRepository{
 	}
 	
 	/**
+	 * Metodo de consulta para los registros de la tabla FrmI18n por id
+	 * @value id = id de la llave primaria a consultar el registro
+	 * @return FrmI18n = objeto de la case FrmI18n que contiene los datos encontrados dado el id
+	 * @throws Exception
+	 */
+	@Override
+	@Transactional
+	public List<FrmI18n> listModulo(String[] modulos){
+		try{
+			String sql = "select etincons ,etinmodu ,etincamp ,etinetiq "
+					   + "from Frm_I18n "
+					   + "join Frm_Modulo on (moducons=etinmodu and modunomb in (:modulo)) "
+					   + "order by etincons";
+						
+			Query query = getSession().createSQLQuery(sql)
+						 .addEntity(FrmI18n.class)					
+					     .setParameterList("modulo", modulos);
+			return query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
 	 * Metodo de consulta para los registros de la tabla FrmI18n
 	 * @return FrmI18n = coleccion de objetos de la case FrmI18n que contiene los datos encontrados
 	 * @throws Exception
 	 */
 	@Override
 	@Transactional
-	public List<FrmI18n> listAll(){
+	public List<FrmI18n> listAll(int init, int limit){
 		try{
 			String sql = "select etincons ,etinmodu ,etincamp ,etinetiq "
 					   + "from FrmI18n ";
 						
 			Query query = getSession().createSQLQuery(sql)
 						 .addEntity(FrmI18n.class);
+						 
+			if(init==0 && limit!=0){
+				query.setFirstResult(init);			
+				query.setMaxResults(limit);
+			}
 					     
 			return query.list();
 		}catch(Exception e){
@@ -81,6 +112,35 @@ public class FrmI18nRepositoryImpl implements FrmI18nRepository{
 			return null;
 		}
 	}	
+	
+	/**
+	 * Metodo de consulta para el conteo de los registros de la tabla FrmI18n
+	 * @return int = cantidad de registros encontrados
+	 * @throws Exception
+	 */
+	@Override
+	@Transactional
+	public int getCount(){
+		try{
+			String sql = "select count(*) "
+					   + "from FrmI18n ";
+						
+			Query query = getSession().createQuery(sql);
+	        
+			Iterator it = query.list().iterator();
+	        Long ret = new Long(0);
+	        
+	        if (it != null)
+		        if (it.hasNext()){
+		        	ret = (Long) it.next();
+		        }
+	        
+			return ret.intValue();
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}
+	}
 	
 	/**
 	 * Metodo para actualizar los datos de un registro de la tabla FrmI18n por id
@@ -121,8 +181,7 @@ public class FrmI18nRepositoryImpl implements FrmI18nRepository{
 	 */
 	@Override
 	@Transactional
-	public FrmI18n insert(FrmI18n frmi18n){
-		//getSession().insert(frmi18n);
-		return frmi18n;
+	public void insert(FrmI18n frmi18n){
+		getSession().save(frmi18n);		
 	}
 }

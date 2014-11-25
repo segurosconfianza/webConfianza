@@ -58,13 +58,13 @@ public class FrmPerfilServiceImpl implements FrmPerfilService{
 	}
 	
 	@Override
-	public FrmPerfil update(Long id){
-		return frmPerfilRepository.update(id);
+	public FrmPerfil update(FrmPerfil frmPerfil){
+		return frmPerfilRepository.update(frmPerfil);
 	}
 	
 	@Override
-	public void delete(Long id){
-		frmPerfilRepository.delete(id);
+	public void delete(FrmPerfil frmperfil){
+		frmPerfilRepository.delete(frmperfil);
 	}
 	
 	@Override

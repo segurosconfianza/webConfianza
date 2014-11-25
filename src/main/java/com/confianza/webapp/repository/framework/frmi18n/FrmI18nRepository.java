@@ -15,11 +15,15 @@ public interface FrmI18nRepository {
 	
 	public FrmI18n list(Long id);
 	
-	public List<FrmI18n> listAll();	
+	public List<FrmI18n> listAll(int init, int limit);	
 	
 	public FrmI18n update(Long id);
 	
 	public void delete(Long id);
 	
-	public FrmI18n insert(FrmI18n frmi18n);
+	public void insert(FrmI18n frmi18n);
+	
+	public int getCount();	
+
+	public List<FrmI18n> listModulo(String[] modulos);
 }

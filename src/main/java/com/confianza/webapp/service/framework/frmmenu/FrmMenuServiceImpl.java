@@ -70,7 +70,10 @@ public class FrmMenuServiceImpl implements FrmMenuService{
 	public List<Object[]> loadMenu(Long id) {
 
 		List<String> roles = getRoles();
-		return frmMenuRepository.loadMenu(roles, id);
+		if(roles.size()>0)
+			return frmMenuRepository.loadMenu(roles, id);
+		else
+			return null;
 	}
 	
 	@Override
@@ -96,6 +99,7 @@ public class FrmMenuServiceImpl implements FrmMenuService{
 					else
 						rol+="_"+auxRol[i];
 				}
+				System.out.println(rol);
 				roles.add(rol);	
 			}
 	    }

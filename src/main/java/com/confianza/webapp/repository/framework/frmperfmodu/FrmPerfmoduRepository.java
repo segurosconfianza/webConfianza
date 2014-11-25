@@ -15,11 +15,15 @@ public interface FrmPerfmoduRepository {
 	
 	public FrmPerfmodu list(Long id);
 	
-	public List<FrmPerfmodu> listAll();	
+	public FrmPerfmodu update(FrmPerfmodu frmperfmodu);
 	
-	public FrmPerfmodu update(Long id);
-	
-	public void delete(Long id);
+	public void delete(FrmPerfmodu frmperfmodu);
 	
 	public FrmPerfmodu insert(FrmPerfmodu frmperfmodu);
+
+	public int getCount();
+
+	public List<Object[]> listAll(int init, int limit, Long pemopefi);
+
+	public List<Object[]> listComboMoro();
 }

@@ -1,20 +1,12 @@
 package com.confianza.webapp.controller.framework.frmperfil;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
-
-import javax.servlet.http.HttpSession;
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +23,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.confianza.webapp.service.framework.frmperfil.FrmPerfilService;
 import com.confianza.webapp.repository.framework.frmperfil.FrmPerfil;
-import com.confianza.webapp.repository.framework.frmsesion.FrmSesion;
 
 @Controller
 @EnableWebMvc
 @RequestMapping("/FrmPerfil")
 public class CFrmPerfil {
 
-	private FrmPerfilService frmPerfilService;
+	private FrmPerfilService frmPerfilService;		
 	
 	@Autowired
 	Gson gson;
@@ -46,13 +37,19 @@ public class CFrmPerfil {
 	@Autowired
 	public CFrmPerfil(FrmPerfilService frmperfilService) {
 		this.frmPerfilService = frmperfilService;
-	}
+	}		
 	
+	public CFrmPerfil() {
+		super();
+	}
+
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_READ"})
 	@RequestMapping("/")
 	public String index() {
 		return "framework/frmperfil/FrmPerfil";
 	}
 	
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_READ"})
 	@RequestMapping(value = "/{peficons}.json", method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
 	public String list(@PathVariable("peficons") Long peficons){
@@ -60,9 +57,10 @@ public class CFrmPerfil {
 		return gson.toJson(this.frmPerfilService.list(peficons));
 	}
 	
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_READ"})
 	@RequestMapping(value = "/listAll.json", params = {"page","pageSize"}, method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
-	public String listAll(@RequestParam("pageSize") int pageSize, @RequestParam("page") int page){
+	public String listAll(@RequestParam("pageSize") int pageSize, @RequestParam("page") int page) throws Exception{
 		
 		List<FrmPerfil> listAll=this.frmPerfilService.listAll(pageSize, page);
 		
@@ -73,36 +71,39 @@ public class CFrmPerfil {
 		return gson.toJson(result);
 	}
 	
-	@RequestMapping(value = "/{peficons}", method = RequestMethod.PUT)
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_DELETE"})
+	@RequestMapping(value = "/deleteR", method = RequestMethod.POST, produces={"application/json"})
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
-	public FrmPerfil update(@PathVariable("peficons") Long peficons, HttpServletRequest request){
+	public String delete(@RequestBody FrmPerfil frmperfil, HttpServletRequest request){
 	
-		HttpSession session = request.getSession();
-		FrmSesion frmSesion = (FrmSesion) session.getAttribute("frmSesion");
+		/*HttpSession session = request.getSession();
+		FrmSesion frmSesion = (FrmSesion) session.getAttribute("frmSesion");*/
 		
-		return this.frmPerfilService.update(peficons);
+		frmperfil.setPefiesta("B");
+		
+		return gson.toJson(this.frmPerfilService.update(frmperfil));
 	}
 	
-	@RequestMapping(value = "/{peficons}.json", method = RequestMethod.DELETE)
-	@ResponseStatus( HttpStatus.OK )
-	@ResponseBody
-	public void delete(@PathVariable("peficons") Long peficons, HttpServletRequest request){
-	
-		HttpSession session = request.getSession();
-		FrmSesion frmSesion = (FrmSesion) session.getAttribute("frmSesion");
-		
-		this.frmPerfilService.delete(peficons);
-	}
-	
-	@RequestMapping(method = RequestMethod.POST, produces={"application/json"})
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_CREATE"})
+	@RequestMapping(value = "/insert", method = RequestMethod.POST, produces={"application/json"})
 	@ResponseStatus( HttpStatus.CREATED )
-	@ResponseBody
+	@ResponseBody	
 	public String insert(@RequestBody FrmPerfil frmperfil, HttpServletRequest request){
-		
-		HttpSession session = request.getSession();
-		FrmSesion frmSesion = (FrmSesion) session.getAttribute("frmSesion");
-		
+				
+		frmperfil.setPefiesta("A");
+		frmperfil.setPefifecr(new Date());
+			
 		return gson.toJson(this.frmPerfilService.insert(frmperfil));
 	}
+		
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_UPDATE"})
+	@RequestMapping(value = "/update", method = RequestMethod.POST, produces={"application/json"})
+	@ResponseStatus( HttpStatus.OK )
+	@ResponseBody
+	public String update(@RequestBody FrmPerfil frmperfil, HttpServletRequest request){
+			
+		return gson.toJson(this.frmPerfilService.update(frmperfil));
+	}
+		
 }
