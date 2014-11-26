@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
+
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,67 +45,76 @@ public class CFrmPerfil {
 		super();
 	}
 
-	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_READ"})
 	@RequestMapping("/")
 	public String index() {
 		return "framework/frmperfil/FrmPerfil";
 	}
 	
-	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_READ"})
 	@RequestMapping(value = "/{peficons}.json", method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
-	public String list(@PathVariable("peficons") Long peficons){
+	public String list(@PathVariable("peficons") Long peficons) throws Exception{
 		
 		return gson.toJson(this.frmPerfilService.list(peficons));
 	}
 	
-	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_READ"})
 	@RequestMapping(value = "/listAll.json", params = {"page","pageSize"}, method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
 	public String listAll(@RequestParam("pageSize") int pageSize, @RequestParam("page") int page) throws Exception{
 		
-		List<FrmPerfil> listAll=this.frmPerfilService.listAll(pageSize, page);
-		
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("data", listAll);
-		result.put("count", this.frmPerfilService.getCount());
-		
-		return gson.toJson(result);
+		try{
+			List<FrmPerfil> listAll=this.frmPerfilService.listAll(pageSize, page);
+			
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("data", listAll);
+			result.put("count", this.frmPerfilService.getCount());
+			
+			return gson.toJson(result);
+		}catch(AccessDeniedException e){
+			return "Acceso denegado";
+		}
 	}
 	
-	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_DELETE"})
 	@RequestMapping(value = "/deleteR", method = RequestMethod.POST, produces={"application/json"})
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
-	public String delete(@RequestBody FrmPerfil frmperfil, HttpServletRequest request){
+	public String delete(@RequestBody FrmPerfil frmperfil, HttpServletRequest request) throws Exception{
 	
 		/*HttpSession session = request.getSession();
 		FrmSesion frmSesion = (FrmSesion) session.getAttribute("frmSesion");*/
-		
-		frmperfil.setPefiesta("B");
-		
-		return gson.toJson(this.frmPerfilService.update(frmperfil));
+		try{
+			frmperfil.setPefiesta("B");
+			
+			return gson.toJson(this.frmPerfilService.update(frmperfil));
+		}catch(AccessDeniedException e){
+			return "Acceso denegado";
+		}
 	}
 	
-	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_CREATE"})
 	@RequestMapping(value = "/insert", method = RequestMethod.POST, produces={"application/json"})
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody	
-	public String insert(@RequestBody FrmPerfil frmperfil, HttpServletRequest request){
-				
-		frmperfil.setPefiesta("A");
-		frmperfil.setPefifecr(new Date());
+	public String insert(@RequestBody FrmPerfil frmperfil, HttpServletRequest request) throws Exception{
 			
-		return gson.toJson(this.frmPerfilService.insert(frmperfil));
+		try{
+			frmperfil.setPefiesta("A");
+			frmperfil.setPefifecr(new Date());
+				
+			return gson.toJson(this.frmPerfilService.insert(frmperfil));
+		}catch(AccessDeniedException e){
+			return "Acceso denegado";
+		}
 	}
 		
-	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_UPDATE"})
 	@RequestMapping(value = "/update", method = RequestMethod.POST, produces={"application/json"})
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
-	public String update(@RequestBody FrmPerfil frmperfil, HttpServletRequest request){
-			
-		return gson.toJson(this.frmPerfilService.update(frmperfil));
+	public String update(@RequestBody FrmPerfil frmperfil, HttpServletRequest request) throws Exception{
+		
+		try{
+			return gson.toJson(this.frmPerfilService.update(frmperfil));
+		}catch(AccessDeniedException e){
+			return "Acceso denegado";
+		}
 	}
 		
 }

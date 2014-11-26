@@ -11,6 +11,8 @@ package com.confianza.webapp.service.framework.frmperfil;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,12 +40,14 @@ public class FrmPerfilServiceImpl implements FrmPerfilService{
 	}
 	
 	@Override
-	public FrmPerfil list(Long id){
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_READ"})
+	public FrmPerfil list(Long id) throws Exception{
 		return frmPerfilRepository.list(id);
 	}
-	
+		
 	@Override
-	public List<FrmPerfil> listAll(int pageSize, int page){
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_READ"})
+	public List<FrmPerfil> listAll(int pageSize, int page) throws Exception{
 		
 		int limit=pageSize*page;
 		int init=limit-pageSize;
@@ -58,17 +62,20 @@ public class FrmPerfilServiceImpl implements FrmPerfilService{
 	}
 	
 	@Override
-	public FrmPerfil update(FrmPerfil frmPerfil){
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_UPDATE"})
+	public FrmPerfil update(FrmPerfil frmPerfil) throws Exception{
 		return frmPerfilRepository.update(frmPerfil);
 	}
 	
 	@Override
-	public void delete(FrmPerfil frmperfil){
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_DELETE"})
+	public void delete(FrmPerfil frmperfil) throws Exception{
 		frmPerfilRepository.delete(frmperfil);
 	}
 	
 	@Override
-	public FrmPerfil insert(FrmPerfil frmperfil){
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFIL_ALL", "FRM_PERFIL_CREATE"})
+	public FrmPerfil insert(FrmPerfil frmperfil) throws Exception{
 		return frmPerfilRepository.insert(frmperfil);
 	}
 	

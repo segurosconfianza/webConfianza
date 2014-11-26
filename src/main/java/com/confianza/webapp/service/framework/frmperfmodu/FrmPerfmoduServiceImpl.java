@@ -10,6 +10,9 @@ package com.confianza.webapp.service.framework.frmperfmodu;
   */                          
 
 import java.util.List;
+
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +45,7 @@ public class FrmPerfmoduServiceImpl implements FrmPerfmoduService{
 	}
 	
 	@Override
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFMODU_ALL", "FRM_PERFMODU_READ"})
 	public List<Object[]> listAll(int pageSize, int page, Long pemopefi){
 		
 		int limit=pageSize*page;
@@ -51,16 +55,19 @@ public class FrmPerfmoduServiceImpl implements FrmPerfmoduService{
 	}	
 	
 	@Override
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFMODU_ALL", "FRM_PERFMODU_UPDATE"})
 	public FrmPerfmodu update(FrmPerfmodu frmperfmodu){
 		return frmperfmoduRepository.update(frmperfmodu);
 	}
 	
 	@Override
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFMODU_ALL", "FRM_PERFMODU_DELETE"})
 	public void delete(FrmPerfmodu frmperfmodu){
 		frmperfmoduRepository.delete(frmperfmodu);
 	}
 	
 	@Override
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFMODU_ALL", "FRM_PERFMODU_CREATE"})
 	public FrmPerfmodu insert(FrmPerfmodu frmperfmodu){
 		return frmperfmoduRepository.insert(frmperfmodu);
 	}
@@ -71,6 +78,7 @@ public class FrmPerfmoduServiceImpl implements FrmPerfmoduService{
 	}
 	
 	@Override
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_PERFMODU_ALL", "FRM_PERFMODU_READ"})
 	public List<Object[]> listComboMoro(){
 				
 		return frmperfmoduRepository.listComboMoro();

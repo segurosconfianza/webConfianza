@@ -15,6 +15,9 @@
 
 	<security:http use-expressions="true" access-denied-page="/WEB-INF/denied.jsp" >
 		<security:form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?login_error=true" default-target-url="/index.jsp" authentication-success-handler-ref="myAuthenticationSuccessHandler"/>
+		<security:intercept-url pattern="/index.jsp" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/menu.jsp"  access="isAuthenticated()"/>
+		<security:intercept-url pattern="/confianza/**" access="isAuthenticated()"/>
 		<security:logout invalidate-session="true" logout-url="/logout"/>
 	</security:http>
 	
