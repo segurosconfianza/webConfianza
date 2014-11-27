@@ -42,4 +42,7 @@
 
 	<bean id="authenticate" class="com.confianza.webapp.service.security.AutenticateImpl"/>
 	
+	<bean id="reCaptcha" class="net.tanesha.recaptcha.ReCaptchaImpl">
+        <property name="privateKey" value="6Ld7av4SAAAAAPqyLaN63Q2qNBZVu1-ESWUvUjLq"/>
+    </bean>
 </beans>
