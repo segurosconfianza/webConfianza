@@ -29,8 +29,10 @@ public class GoogleReCaptchaController {
         ReCaptchaResponse reCaptchaResponse = this.reCaptcha.checkAnswer(remoteAddress, challangeField, responseField);
  
         if(reCaptchaResponse.isValid() ){
+        	System.out.println("valid.captcha");
             return "valid.captcha";
         } else {
+        	System.out.println("invalid.captcha");
             return "invalid.captcha";           
         }   
 

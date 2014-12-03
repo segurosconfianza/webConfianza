@@ -69,7 +69,10 @@ public class CFrmPerfmodu {
 			
 			return gson.toJson(result);
 		}catch(AccessDeniedException e){
-			return "Acceso denegado";
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("tituloError", "Acceso denegado");
+			result.put("error", "No posee los permisos para esta accion");
+			return gson.toJson(result);
 		}
 				
 	}
@@ -87,7 +90,10 @@ public class CFrmPerfmodu {
 			
 			return gson.toJson(rolAll);
 		}catch(AccessDeniedException e){
-			return "Acceso denegado";
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("tituloError", "Acceso denegado");
+			result.put("error", "No posee los permisos para esta accion");
+			return gson.toJson(result);
 		}
 	}
 	

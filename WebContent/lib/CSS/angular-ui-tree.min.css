@@ -31,8 +31,6 @@
 	padding-left: 20px
 }
 
-
-
 .angular-ui-tree-hidden {
 	display: none
 }
@@ -44,7 +42,7 @@
 }
 
 .angular-ui-tree-handle {
-	cursor: move;
+	cursor: pointer;
 	text-decoration: none;
 	font-weight: 700;
 	-webkit-box-sizing: border-box;

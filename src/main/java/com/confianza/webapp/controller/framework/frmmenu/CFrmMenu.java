@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 
 import org.springframework.http.HttpStatus;
 
-import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -47,20 +46,17 @@ public class CFrmMenu {
 		super();
 	}
 
-	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_MENU_ALL", "FRM_MENU_READ"})
 	@RequestMapping("/")
 	public String index(Model model) {
 		return "framework/frmmenu/FrmMenu";
 	}
 
-	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_MENU_ALL", "FRM_MENU_READ"})
 	@RequestMapping(value = "/{menucons}.json", method = RequestMethod.GET, produces={"application/json"})
 	public @ResponseBody String list(@PathVariable("menucons") Long menucons){
 		
 		return gson.toJson(this.frmMenuService.list(menucons));
 	}
 	
-	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "FRM_MENU_ALL", "FRM_MENU_READ"})
 	@RequestMapping(value = "/listAll.json", method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
 	public String listAll(HttpServletRequest request){

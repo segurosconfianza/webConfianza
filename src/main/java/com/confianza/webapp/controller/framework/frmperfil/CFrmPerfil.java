@@ -7,7 +7,6 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +69,11 @@ public class CFrmPerfil {
 			
 			return gson.toJson(result);
 		}catch(AccessDeniedException e){
-			return "Acceso denegado";
+			
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("tituloError", "Acceso denegado");
+			result.put("error", "No posee los permisos para esta accion");
+			return gson.toJson(result);
 		}
 	}
 	
@@ -86,7 +89,10 @@ public class CFrmPerfil {
 			
 			return gson.toJson(this.frmPerfilService.update(frmperfil));
 		}catch(AccessDeniedException e){
-			return "Acceso denegado";
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("tituloError", "Acceso denegado");
+			result.put("error", "No posee los permisos para esta accion");
+			return gson.toJson(result);
 		}
 	}
 	
@@ -101,7 +107,10 @@ public class CFrmPerfil {
 				
 			return gson.toJson(this.frmPerfilService.insert(frmperfil));
 		}catch(AccessDeniedException e){
-			return "Acceso denegado";
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("tituloError", "Acceso denegado");
+			result.put("error", "No posee los permisos para esta accion");
+			return gson.toJson(result);
 		}
 	}
 		
@@ -113,7 +122,10 @@ public class CFrmPerfil {
 		try{
 			return gson.toJson(this.frmPerfilService.update(frmperfil));
 		}catch(AccessDeniedException e){
-			return "Acceso denegado";
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("tituloError", "Acceso denegado");
+			result.put("error", "No posee los permisos para esta accion");
+			return gson.toJson(result);
 		}
 	}
 		

@@ -99,7 +99,6 @@ public class FrmMenuServiceImpl implements FrmMenuService{
 					else
 						rol+="_"+auxRol[i];
 				}
-				System.out.println(rol);
 				roles.add(rol);	
 			}
 	    }
