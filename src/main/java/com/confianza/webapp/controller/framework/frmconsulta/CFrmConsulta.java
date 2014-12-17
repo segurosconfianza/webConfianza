@@ -43,11 +43,16 @@ public class CFrmConsulta {
 	@Autowired
 	public CFrmConsulta(FrmConsultaService frmconsultaService) {
 		this.frmConsultaService = frmconsultaService;
-	}
-		
+	}	
+	
 	@RequestMapping("/")
 	public String index() {
 		return "framework/frmconsulta/FrmConsulta";
+	}
+	
+	@RequestMapping("/PolizaConsulta/")
+	public String polizaConsulta() {
+		return "poliza/poliza/Poliza";
 	}
 	
 	@RequestMapping(value = "/{conscons}.json", method = RequestMethod.GET, produces={"application/json"})
@@ -71,6 +76,25 @@ public class CFrmConsulta {
 			Map<String, Object> result = new HashMap<String, Object>();
 			result.put("data", listAll);
 			result.put("count", this.frmConsultaService.getCount());
+			
+			return gson.toJson(result);
+		}catch(AccessDeniedException e){
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("tituloError", "Acceso denegado");
+			result.put("error", "No posee los permisos para esta accion");
+			return gson.toJson(result);
+		}
+	}
+	
+	@RequestMapping(value = "/ParamE.json", params = {"paco"},  method = RequestMethod.GET, produces={"application/json"})
+	@ResponseBody
+	public String Columns(@RequestParam("paco") String paco){
+	
+		try{
+			FrmConsulta listAll=this.frmConsultaService.listName(paco);
+			
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("data", listAll.getConscolu());
 			
 			return gson.toJson(result);
 		}catch(AccessDeniedException e){

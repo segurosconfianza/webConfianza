@@ -8,14 +8,6 @@
 		    white-space:normal;
 }
 
-#encabezado{ height:  9%; width: 100%; top: 0px; left: 0px; position: absolute}
-
-#pie       { height: 16%; width: 100%; clear: both; bottom: 0px; left: 0px; position: absolute;}
-
-#contenido { height: 75%; width: 80% ; margin-left: 20%; margin-top:100px; position: absolute}
-
-#menu      { height: 75%; width: 18% ; margin-top:100px; position: absolute}		
-
 .btn {
     margin-right: 8px;
 }

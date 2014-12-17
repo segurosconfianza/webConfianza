@@ -43,6 +43,11 @@ public class FrmConsultaServiceImpl implements FrmConsultaService{
 		return frmConsultaRepository.list(id);
 	}
 	
+	@Override	
+	public FrmConsulta listName(String id){
+		return frmConsultaRepository.listName(id);
+	}
+	
 	@Override
 	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "APP_FRMCONSULTA__ALL", "APP_FRMCONSULTA__READ"})
 	public List<FrmConsulta> listAll(int pageSize, int page){

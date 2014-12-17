@@ -24,4 +24,6 @@ public interface FrmParametroRepository {
 	public FrmParametro insert(FrmParametro frmparametro);
 	
 	public int getCount();
+
+	public List<FrmParametro> listParamsCosu(Long id);
 }

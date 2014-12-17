@@ -1,9 +1,11 @@
 package com.confianza.webapp.controller.framework.frmparametro;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
+
 import com.google.gson.Gson;
 
 import javax.servlet.http.HttpSession;
@@ -23,7 +25,6 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.confianza.webapp.utils.JSONUtil;
-
 import com.confianza.webapp.service.framework.frmparametro.FrmParametroService;
 import com.confianza.webapp.repository.framework.frmparametro.FrmParametro;
 
@@ -56,6 +57,31 @@ public class CFrmParametro {
 		
 		try{
 			return gson.toJson(this.frmParametroService.list(paracons));
+		}catch(AccessDeniedException e){
+			return "Acceso denegado";
+		}
+	}
+	
+	@RequestMapping(value = "/params.json", params = {"paracons"}, method = RequestMethod.GET, produces={"application/json"})
+	@ResponseBody
+	public String listParamsCosu(@RequestParam("paracons") Long paracons){
+		
+		try{			
+			Map<String, Object> result = new HashMap<String, Object>();
+			List<FrmParametro> listAll=this.frmParametroService.listParamsCosu(paracons);
+			List<Object[]> params=new ArrayList<Object[]>();
+			Object[] aux=new Object[2];
+			
+			for(FrmParametro obj:listAll){
+				aux[0]="p"+obj.getParacons();
+				aux[1]="";
+				params.add(aux);
+			}
+			
+			result.put("data", listAll);
+			result.put("params", params);
+			
+			return gson.toJson(result);
 		}catch(AccessDeniedException e){
 			return "Acceso denegado";
 		}

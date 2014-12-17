@@ -44,6 +44,12 @@ public class FrmParametroServiceImpl implements FrmParametroService{
 	}
 	
 	@Override
+	public List<FrmParametro> listParamsCosu(Long id){
+	
+		return frmParametroRepository.listParamsCosu(id);
+	}	
+	
+	@Override
 	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "APP_FRMPARAMETRO__ALL", "APP_FRMPARAMETRO__READ"})
 	public List<FrmParametro> listAll(int pageSize, int page){
 	

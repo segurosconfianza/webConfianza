@@ -3,11 +3,11 @@ var FrmMainApp=angular.module('FrmMainApp', ['ui.tree', 'ngGrid', 'ngRoute', 'ui
 FrmMainApp.config(['$routeProvider',
    	function($routeProvider) {
    	  $routeProvider.
-   	    when('/FrmPerfil', {
+   	    when('/Poliza', {
    	      templateUrl: function(params) {
-   	          return  WEB_SERVER+'FrmPerfil/';
+   	          return  WEB_SERVER+'FrmConsulta/PolizaConsulta/';
    	      },
-   	      controller: 'FrmPerfilController'
+   	      controller: 'PolizaController'
    	    }).	    
    	    otherwise({
    	      

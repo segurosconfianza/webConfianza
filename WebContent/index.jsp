@@ -1,20 +1,57 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<html lang="es" ng-app=FrmMainApp><head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 
-<title>Confianza, honramos nuestro nombre</title>
+		<title>Confianza, honramos nuestro nombre</title>
 
-<link href="lib/Confianza/estilos.css" rel="stylesheet" type="text/css">
-<link href="lib/Confianza/menu.css" rel="stylesheet" type="text/css">
-<link href="lib/Confianza/lightbox.css" rel="stylesheet" type="text/css" media="screen">
-<link href="lib/Confianza/highslide.css" rel="stylesheet" type="text/css">
+		<%
+			ServletContext context = pageContext.getServletContext();
+			String WEB_SERVER = context.getInitParameter("WEB_SERVER");
+		%>	    
+		<script >var WEB_SERVER='<%out.print(WEB_SERVER);%>';</script>
+	
+		<script src="lib/Angular/1.3.2/angular.js"></script>
+	    <script src="lib/Angular/1.3.2/angular.min.js"></script>
+	    <script src="lib/Angular/1.3.2/angular-route.js"></script>
+	    <script src="lib/Angular/1.3.2/angular-ui-tree.js"></script>
+	    <script src="lib/bootstrap/Angular/ui-bootstrap-tpls-0.11.2.min.js"></script>    	    	          
+	    	    
+    	<!--ng grid...-->
+	    <script src="lib/Angular/angular-ui-ng-grid/3.0/jquery.min.js"></script>
+    	<script src="lib/Angular/angular-ui-ng-grid/3.0/ng-grid.debug.js" type="text/javascript" ></script>
+    	
+    	<script src="lib/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    	<script src="lib/bootstrap/3.1.1/js/bootstrap.js"></script>
+    	
+	    <!--inclusion de estilos ...-->
+	    <link  href="lib/CSS/Base.css" rel="stylesheet">
+	    <link  href="lib/CSS/angular-ui-tree.min.css" rel="stylesheet">
+	    <link  href="lib/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">  
+ 		<!--ng grid...-->
+		<link href="lib/Angular/angular-ui-ng-grid/3.0/ng-grid.css" rel="stylesheet" type="text/css" />
+		
+		<!--inclusion de app, servicios, controles ...-->		
+	    <script src="WebResources/framework/frmmenu/FrmMenuApp.js"></script>
+	    <script src="WebResources/framework/frmmenu/FrmMenuService.js"></script>
+	    <script src="WebResources/framework/frmmenu/FrmMenuController.js"></script>	
+	    
+	    <script src="WebResources/poliza/poliza/PolizaApp.js"></script>
+	    <script src="WebResources/poliza/poliza/PolizaService.js"></script>
+	    <script src="WebResources/poliza/poliza/PolizaController.js"></script>
+	    
+	    <!--inclusion de Confianza ...-->
+		<link href="lib/Confianza/estilos.css" rel="stylesheet" type="text/css">
+		<link href="lib/Confianza/menu.css" rel="stylesheet" type="text/css">
+		<link href="lib/Confianza/lightbox.css" rel="stylesheet" type="text/css" media="screen">
+		<link href="lib/Confianza/highslide.css" rel="stylesheet" type="text/css">
+		
+		<script src="lib/Confianza/stuHover.js" type="text/javascript"></script>
+		<script src="lib/Confianza/prototype.js" type="text/javascript"></script>
+		<script src="lib/Confianza/lightbox.js" type="text/javascript"></script>
+		<script src="lib/Confianza/highslide-with-gallery.js" type="text/javascript"></script>
 
-<script src="lib/Confianza/stuHover.js" type="text/javascript"></script>
-<script src="lib/Confianza/prototype.js" type="text/javascript"></script>
-<script src="lib/Confianza/lightbox.js" type="text/javascript"></script>
-<script src="lib/Confianza/highslide-with-gallery.js" type="text/javascript"></script>
-
-<style media="screen" type="text/css">#grande {visibility:hidden}</style><style media="screen" type="text/css">#chico {visibility:hidden}</style><style type="text/css">.highslide img {cursor: url(/highslide/graphics/zoomin.cur), pointer !important;}.highslide-viewport-size {position: fixed; width: 100%; height: 100%; left: 0; top: 0}</style></head>
+		<style media="screen" type="text/css">#grande {visibility:hidden}</style><style media="screen" type="text/css">#chico {visibility:hidden}</style><style type="text/css">.highslide img {cursor: url(/highslide/graphics/zoomin.cur), pointer !important;}.highslide-viewport-size {position: fixed; width: 100%; height: 100%; left: 0; top: 0}</style></head>
 
 <body>
 <div id="contenedor">
@@ -104,7 +141,11 @@
     	 </div>                                  
   	</div>	
 
- 	aca va texto
+ 	<!--contenido de la pagina-->
+	<aside>
+		<div ng-view></div>			
+	</aside>
+	<!-- fin del contenido-->
   
 	<div id="submenu">
 	  <table border="0" cellpadding="0" cellspacing="0" width="950">

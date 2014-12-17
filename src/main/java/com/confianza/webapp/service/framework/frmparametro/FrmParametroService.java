@@ -10,6 +10,7 @@ package com.confianza.webapp.service.framework.frmparametro;
   */                          
 
 import java.util.List;
+
 import com.confianza.webapp.repository.framework.frmparametro.FrmParametro;
 
 public interface FrmParametroService{
@@ -25,5 +26,7 @@ public interface FrmParametroService{
 	public void delete(FrmParametro frmparametro);	
 	
 	public int getCount();
+
+	public List<FrmParametro> listParamsCosu(Long id);
 	
 }

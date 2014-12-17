@@ -10,6 +10,7 @@ package com.confianza.webapp.service.framework.frmconsulta;
   */                          
 
 import java.util.List;
+
 import com.confianza.webapp.repository.framework.frmconsulta.FrmConsulta;
 
 public interface FrmConsultaService{
@@ -25,5 +26,7 @@ public interface FrmConsultaService{
 	public void delete(FrmConsulta frmconsulta);	
 	
 	public int getCount();
+
+	public FrmConsulta listName(String id);
 	
 }

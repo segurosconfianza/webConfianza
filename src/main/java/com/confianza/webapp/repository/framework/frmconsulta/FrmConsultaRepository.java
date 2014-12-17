@@ -24,4 +24,6 @@ public interface FrmConsultaRepository {
 	public FrmConsulta insert(FrmConsulta frmconsulta);
 	
 	public int getCount();
+
+	public FrmConsulta listName(String id);
 }

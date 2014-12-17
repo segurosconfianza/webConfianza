@@ -62,6 +62,30 @@ public class FrmParametroRepositoryImpl implements FrmParametroRepository{
 	}
 	
 	/**
+	 * Metodo de consulta para los registros de la tabla FrmParametro de acuerdo a la consulta que pertenezcan
+	 * @value id = id de la llave foranea a consultar el registro
+	 * @return FrmParametro = objeto de la case FrmParametro que contiene los datos encontrados dado el id
+	 * @throws Exception
+	 */
+	@Override
+	@Transactional
+	public List<FrmParametro> listParamsCosu(Long id){
+		try{
+			String sql = "select "+FrmParametro.getColumnNames()
+					   + "from Frm_Parametro "
+					   + "where paracosu = :id ";
+						
+			Query query = getSession().createSQLQuery(sql)
+						 .addEntity(FrmParametro.class)					
+					     .setParameter("id", id);
+			return query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
 	 * Metodo de consulta para los registros de la tabla FrmParametro
 	 * @return FrmParametro = coleccion de objetos de la case FrmParametro que contiene los datos encontrados
 	 * @throws Exception
@@ -71,7 +95,7 @@ public class FrmParametroRepositoryImpl implements FrmParametroRepository{
 	public List<FrmParametro> listAll(int init, int limit){
 		try{
 			String sql = "select "+FrmParametro.getColumnNames()
-					   + "from FrmParametro ";
+					   + "from Frm_Parametro ";
 						
 			Query query = getSession().createSQLQuery(sql)
 						 .addEntity(FrmParametro.class);
