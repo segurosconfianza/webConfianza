@@ -11,6 +11,7 @@ package com.confianza.webapp.repository.framework.frmconsulta;
 
 import java.util.List;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -19,12 +20,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.confianza.webapp.repository.framework.frmparametro.FrmParametro;
+
 @Repository
 public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	
 	@Autowired
 	private SessionFactory sessionFactory;  	
 	
+	@Autowired
+	private SessionFactory sessionFactoryOsiris;
+	
+	public SessionFactory getSessionFactoryOsiris() {
+		return sessionFactoryOsiris;
+	}
+
+	public void setSessionFactoryOsiris(SessionFactory sessionFactoryOsiris) {
+		this.sessionFactoryOsiris = sessionFactoryOsiris;
+	}
+
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -35,6 +49,10 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
+	}
+	
+	public Session getSessionOsiris() {
+		return sessionFactoryOsiris.getCurrentSession();
 	}
 	
 	/**
@@ -72,12 +90,64 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	public FrmConsulta listName(String id){
 		try{
 			String sql = "select "+FrmConsulta.getColumnNames()
-					   + "from FrmConsulta "
-					   + "where consnomb = :id ";
+					   + "from Frm_Consulta "
+					   + "where conscons = :id ";
 						
-			Query query = getSession().createQuery(sql)				
+			Query query = getSession().createSQLQuery(sql)	
+						 .addEntity(FrmConsulta.class)	
 					     .setParameter("id", id);
-			return (FrmConsulta)query.uniqueResult();
+			return (FrmConsulta) query.uniqueResult();
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * Metodo de consulta para ejecutar la consulta guardad en el sql
+	 * @value id = id de la llave primaria a consultar el registro
+	 * @return FrmConsulta = objeto de la case FrmConsulta que contiene los datos encontrados dado el id
+	 * @throws Exception
+	 */
+	@Override
+	@Transactional
+	public List<Object[]> loadData(FrmConsulta frmConsulta,Map<String, Object> parameters){
+		try{
+			Query query =  getSession().createSQLQuery(frmConsulta.getConslsql());
+					
+			Iterator it = parameters.entrySet().iterator();			
+		    while (it.hasNext()) {
+		        Map.Entry e = (Map.Entry)it.next();
+		        query.setParameter(e.getKey().toString(), e.getValue());
+		   }
+			
+			return query.list();
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * Metodo de consulta para ejecutar la consulta guardad en el sql
+	 * @value id = id de la llave primaria a consultar el registro
+	 * @return FrmConsulta = objeto de la case FrmConsulta que contiene los datos encontrados dado el id
+	 * @throws Exception
+	 */
+	@Override
+	@Transactional("Osiris")
+	public List<Object[]> loadDataOsiris(FrmConsulta frmConsulta,Map<String, Object> parameters){
+		try{
+			Query query = getSessionOsiris().createSQLQuery(frmConsulta.getConslsql());
+			
+			
+			Iterator it = parameters.entrySet().iterator();			
+		    while (it.hasNext()) {
+		        Map.Entry e = (Map.Entry)it.next();
+		        query.setParameter(e.getKey().toString(), e.getValue());
+		   }
+			
+			return query.list();
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;

@@ -10,9 +10,13 @@ package com.confianza.webapp.service.framework.frmconsulta;
   */                          
 
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.confianza.webapp.repository.framework.frmconsulta.FrmConsulta;
 import com.confianza.webapp.repository.framework.frmconsulta.FrmConsultaRepository;
@@ -46,6 +50,19 @@ public class FrmConsultaServiceImpl implements FrmConsultaService{
 	@Override	
 	public FrmConsulta listName(String id){
 		return frmConsultaRepository.listName(id);
+	}
+	
+	@Override
+	public List<Object[]> loadData(FrmConsulta frmConsulta,Map<String, Object> parameters){
+		
+		if(frmConsulta.getConscaco().equals("dataSource")){
+			return frmConsultaRepository.loadData(frmConsulta, parameters);
+		}
+		else if(frmConsulta.getConscaco().equals("dataSourceOsiris")){
+			return frmConsultaRepository.loadDataOsiris(frmConsulta, parameters);
+		}
+		return null;
+		
 	}
 	
 	@Override

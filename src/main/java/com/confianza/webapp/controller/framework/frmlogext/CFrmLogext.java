@@ -1,11 +1,9 @@
-package com.confianza.webapp.controller.framework.frmparametro;
+package com.confianza.webapp.controller.framework.frmlogext;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
-
 import com.google.gson.Gson;
 
 import javax.servlet.http.HttpSession;
@@ -25,54 +23,39 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.confianza.webapp.utils.JSONUtil;
-import com.confianza.webapp.service.framework.frmparametro.FrmParametroService;
-import com.confianza.webapp.repository.framework.frmparametro.FrmParametro;
+
+import com.confianza.webapp.service.framework.frmlogext.FrmLogextService;
+import com.confianza.webapp.repository.framework.frmlogext.FrmLogext;
 
 @Controller
-@RequestMapping("/FrmParametro")
-public class CFrmParametro {
+@RequestMapping("/FrmLogext")
+public class CFrmLogext {
 
-	private FrmParametroService frmParametroService;
+	private FrmLogextService frmlogextService;
 	
 	@Autowired
 	Gson gson;
 	
-	public CFrmParametro() {
+	public CFrmLogext() {
 		super();
 	}
 	
 	@Autowired
-	public CFrmParametro(FrmParametroService frmparametroService) {
-		this.frmParametroService = frmparametroService;
+	public CFrmLogext(FrmLogextService frmlogextService) {
+		this.frmlogextService = frmlogextService;
 	}
 		
 	@RequestMapping("/")
 	public String index() {
-		return "framework/frmparametro/FrmParametro";
+		return "framework/frmlogext/FrmLogext";
 	}
 	
-	@RequestMapping(value = "/{paracons}.json", method = RequestMethod.GET, produces={"application/json"})
+	@RequestMapping(value = "/{loexcons}.json", method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
-	public String list(@PathVariable("paracons") Long paracons){
+	public String list(@PathVariable("loexcons") Long loexcons){
 		
 		try{
-			return gson.toJson(this.frmParametroService.list(paracons));
-		}catch(AccessDeniedException e){
-			return "Acceso denegado";
-		}
-	}
-	
-	@RequestMapping(value = "/params.json", params = {"paracons"}, method = RequestMethod.GET, produces={"application/json"})
-	@ResponseBody
-	public String listParamsCosu(@RequestParam("paracons") Long paracons){
-		
-		try{			
-			Map<String, Object> result = new HashMap<String, Object>();
-			List<FrmParametro> listAll=this.frmParametroService.listParamsCosu(paracons);
-			
-			result.put("data", listAll);
-			
-			return gson.toJson(result);
+			return gson.toJson(this.frmlogextService.list(loexcons));
 		}catch(AccessDeniedException e){
 			return "Acceso denegado";
 		}
@@ -83,11 +66,11 @@ public class CFrmParametro {
 	public String listAll(@RequestParam("pageSize") int pageSize, @RequestParam("page") int page){
 	
 		try{
-			List<FrmParametro> listAll=this.frmParametroService.listAll(pageSize, page);
+			List<FrmLogext> listAll=this.frmlogextService.listAll(pageSize, page);
 			
 			Map<String, Object> result = new HashMap<String, Object>();
 			result.put("data", listAll);
-			result.put("count", this.frmParametroService.getCount());
+			result.put("count", this.frmlogextService.getCount());
 			
 			return gson.toJson(result);
 		}catch(AccessDeniedException e){
@@ -101,10 +84,10 @@ public class CFrmParametro {
 	@RequestMapping(value = "/update", method = RequestMethod.POST, produces={"application/json"})
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
-	public String update(@RequestBody FrmParametro frmparametro, HttpServletRequest request){
+	public String update(@RequestBody FrmLogext frmlogext, HttpServletRequest request){
 	
 		try{		
-			return gson.toJson(this.frmParametroService.update(frmparametro) );
+			return gson.toJson(this.frmlogextService.update(frmlogext) );
 		}catch(AccessDeniedException e){
 			Map<String, Object> result = new HashMap<String, Object>();
 			result.put("tituloError", "Acceso denegado");
@@ -116,11 +99,11 @@ public class CFrmParametro {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST, produces={"application/json"})
 	@ResponseStatus( HttpStatus.OK )
 	@ResponseBody
-	public String delete(@RequestBody FrmParametro frmparametro, HttpServletRequest request){
+	public String delete(@RequestBody FrmLogext frmlogext, HttpServletRequest request){
 	
 		try{
-			//frmparametro.setesta("B");
-			return gson.toJson(this.frmParametroService.update(frmparametro));
+			//frmlogext.setesta("B");
+			return gson.toJson(this.frmlogextService.update(frmlogext));
 		}catch(AccessDeniedException e){
 			Map<String, Object> result = new HashMap<String, Object>();
 			result.put("tituloError", "Acceso denegado");
@@ -132,13 +115,13 @@ public class CFrmParametro {
 	@RequestMapping(value = "/insert", method = RequestMethod.POST, produces={"application/json"})
 	@ResponseStatus( HttpStatus.CREATED )
 	@ResponseBody
-	public String insert(@RequestBody FrmParametro frmparametro, HttpServletRequest request){
+	public String insert(@RequestBody FrmLogext frmlogext, HttpServletRequest request){
 		
 		try{
-			//frmparametro.setesta("A");
-			//frmparametro.setfecr(new Date());
+			//frmlogext.setesta("A");
+			//frmlogext.setfecr(new Date());
 			
-			return gson.toJson(this.frmParametroService.insert(frmparametro));
+			return gson.toJson(this.frmlogextService.insert(frmlogext));
 		}catch(AccessDeniedException e){
 			Map<String, Object> result = new HashMap<String, Object>();
 			result.put("tituloError", "Acceso denegado");

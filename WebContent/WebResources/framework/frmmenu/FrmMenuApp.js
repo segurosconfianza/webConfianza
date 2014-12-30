@@ -11,5 +11,5 @@ FrmMainApp.config(['$routeProvider',
    	    }).	    
    	    otherwise({
    	      
-   	    });
+   	    }); 
 }]);

@@ -14,7 +14,7 @@
 		<script src="lib/Angular/1.3.2/angular.js"></script>
 	    <script src="lib/Angular/1.3.2/angular.min.js"></script>
 	    <script src="lib/Angular/1.3.2/angular-route.js"></script>
-	    <script src="lib/Angular/1.3.2/angular-ui-tree.js"></script>
+	    <script src="lib/Angular/1.3.2/angular-ui-tree.js"></script>  
 	    <script src="lib/bootstrap/Angular/ui-bootstrap-tpls-0.11.2.min.js"></script>    	    	          
 	    	    
     	<!--ng grid...-->
@@ -51,8 +51,10 @@
 		<script src="lib/Confianza/lightbox.js" type="text/javascript"></script>
 		<script src="lib/Confianza/highslide-with-gallery.js" type="text/javascript"></script>
 
-		<style media="screen" type="text/css">#grande {visibility:hidden}</style><style media="screen" type="text/css">#chico {visibility:hidden}</style><style type="text/css">.highslide img {cursor: url(/highslide/graphics/zoomin.cur), pointer !important;}.highslide-viewport-size {position: fixed; width: 100%; height: 100%; left: 0; top: 0}</style></head>
-
+		<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback" async defer></script>
+		
+		</head>
+		
 <body>
 <div id="contenedor">
 	<style type="text/css">

@@ -1,7 +1,10 @@
 var FrmMainApp=angular.module('FrmMainApp');
 
 FrmMainApp.service('PolizaService', function($http, $rootScope) {	    	
-    	this.id=0;
+    	
+		$http.defaults.useXDomain = true;
+		
+		this.id=0;
     	    	
     	this.getParams = function() {    		    		
     		return $http({
@@ -10,22 +13,39 @@ FrmMainApp.service('PolizaService', function($http, $rootScope) {
     	        params: {paracons: 1}
     	     });
     	 }
-    	    	
-    	this.loadRecord = function(peficons, pefinomb, pefidesc, pefifecr, pefiesta) {    	
-    		
-    		data = {peficons: peficons, pefinomb: pefinomb, pefidesc: pefidesc, pefifecr: pefifecr, pefiesta: pefiesta};
-    		
+    	
+    	this.getParamsAmparo = function() {    		    		
     		return $http({
-    	        method: 'POST',
-    	        url: WEB_SERVER+'FrmPerfil/insert',
-    	        data: data
+    	        method: 'GET',
+    	        url:  WEB_SERVER+'FrmParametro/params.json',
+    	        params: {paracons: 2}
+    	     });
+    	 }
+    	
+    	this.loadRecord = function(params) {    	
+    		   		
+    		return $http({
+    	        method: 'GET',
+    	        url: WEB_SERVER+'FrmConsulta/loadRecord.json',
+    	        params: {conscons: 1, params: params}
     	     });
     	 }    			
 		
-		this.getComboMoro = function() {    
+    	this.loadRecordAmparo = function(params) {    	
+	   		
     		return $http({
     	        method: 'GET',
-    	        url: WEB_SERVER+'FrmPerfmodu/listComboMoro.json'
+    	        url: WEB_SERVER+'FrmConsulta/loadRecord.json',
+    	        params: {conscons: 2, params: params}
+    	     });
+    	 } 
+    	    	
+    	this.validateReCaptchaSpring = function(g_recaptcha) {    	
+    		
+    		return $http({
+    	        method: 'POST',
+    	        url: WEB_SERVER+'validateReCaptcha',
+    	        params: {g_recaptcha: g_recaptcha}
     	     });
     	 }
     });    	

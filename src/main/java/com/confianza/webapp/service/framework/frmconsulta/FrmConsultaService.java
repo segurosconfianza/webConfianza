@@ -10,6 +10,7 @@ package com.confianza.webapp.service.framework.frmconsulta;
   */                          
 
 import java.util.List;
+import java.util.Map;
 
 import com.confianza.webapp.repository.framework.frmconsulta.FrmConsulta;
 
@@ -27,6 +28,8 @@ public interface FrmConsultaService{
 	
 	public int getCount();
 
-	public FrmConsulta listName(String id);
+	public FrmConsulta listName(String conscons);
+
+	public List<Object[]> loadData(FrmConsulta frmConsulta, Map<String, Object> parameters);
 	
 }

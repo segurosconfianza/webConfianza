@@ -10,6 +10,7 @@ package com.confianza.webapp.repository.framework.frmconsulta;
   */                          
 
 import java.util.List;
+import java.util.Map;
 
 public interface FrmConsultaRepository {
 	
@@ -26,4 +27,8 @@ public interface FrmConsultaRepository {
 	public int getCount();
 
 	public FrmConsulta listName(String id);
+
+	public List<Object[]> loadData(FrmConsulta frmConsulta,	Map<String, Object> parameters);
+
+	public List<Object[]> loadDataOsiris(FrmConsulta frmConsulta, Map<String, Object> parameters);
 }

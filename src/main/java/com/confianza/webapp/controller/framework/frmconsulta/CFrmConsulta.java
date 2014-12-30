@@ -1,11 +1,16 @@
 package com.confianza.webapp.controller.framework.frmconsulta;
 
+import java.lang.reflect.Type;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
-import com.google.gson.Gson;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,18 +25,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.confianza.webapp.utils.JSONUtil;
-
 import com.confianza.webapp.service.framework.frmconsulta.FrmConsultaService;
+import com.confianza.webapp.service.framework.frmlogext.FrmLogextService;
 import com.confianza.webapp.repository.framework.frmconsulta.FrmConsulta;
 
 @Controller
+@EnableWebMvc
 @RequestMapping("/FrmConsulta")
 public class CFrmConsulta {
-
+	
 	private FrmConsultaService frmConsultaService;
+	
+	private FrmLogextService frmLogextService;
 	
 	@Autowired
 	Gson gson;
@@ -41,9 +50,10 @@ public class CFrmConsulta {
 	}
 	
 	@Autowired
-	public CFrmConsulta(FrmConsultaService frmconsultaService) {
+	public CFrmConsulta(FrmConsultaService frmconsultaService, FrmLogextService frmLogextService) {
 		this.frmConsultaService = frmconsultaService;
-	}	
+		this.frmLogextService = frmLogextService;
+	}			
 	
 	@RequestMapping("/")
 	public String index() {
@@ -86,21 +96,44 @@ public class CFrmConsulta {
 		}
 	}
 	
-	@RequestMapping(value = "/ParamE.json", params = {"paco"},  method = RequestMethod.GET, produces={"application/json"})
+	@RequestMapping(value = "/loadRecord.json", params = {"conscons","params"}, method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
-	public String Columns(@RequestParam("paco") String paco){
-	
+	public String loadRecord(HttpServletRequest request, @RequestParam("conscons") String conscons, @RequestParam("params") String params) throws Throwable{
+			
 		try{
-			FrmConsulta listAll=this.frmConsultaService.listName(paco);
+			Type type = new TypeToken<Map<String, Object>>(){}.getType();
+			Map<String, Object> parameters=gson.fromJson(params, type);   						
 			
-			Map<String, Object> result = new HashMap<String, Object>();
-			result.put("data", listAll.getConscolu());
-			
-			return gson.toJson(result);
+			//carga la consulta dinamica
+			FrmConsulta frmConsulta=this.frmConsultaService.listName(conscons);
+			if(frmConsulta!=null){
+				//carga los datos de la consulta
+				List<Object[]> rAll=this.frmConsultaService.loadData(frmConsulta, parameters);
+				//cast delresultado a ser mapeado por cada campo
+				List<Map<String, Object>> listAll = JSONUtil.toNameList(frmConsulta.getConscolu().split(","),rAll);			
+				
+				Map<String, Object> result = new HashMap<String, Object>();
+				result.put("data", listAll);
+				result.put("camp", frmConsulta.getConscolu().split(","));
+				
+				frmLogextService.insert(request, frmConsulta, gson.toJson(result));
+				return gson.toJson(result);
+			}else{
+				Map<String, Object> result = new HashMap<String, Object>();
+				result.put("tituloError", "Datos no encontrados");
+				result.put("error", "No se encontraron datos con los criterios dados");
+				return gson.toJson(result);
+			}
 		}catch(AccessDeniedException e){
 			Map<String, Object> result = new HashMap<String, Object>();
 			result.put("tituloError", "Acceso denegado");
 			result.put("error", "No posee los permisos para esta accion");
+			return gson.toJson(result);
+		}catch(Exception e){
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("tituloError", "Error Inesperado");
+			result.put("error", e.getMessage());
+			e.printStackTrace();
 			return gson.toJson(result);
 		}
 	}

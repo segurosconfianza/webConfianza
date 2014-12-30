@@ -14,6 +14,6 @@
 	<security:global-method-security jsr250-annotations="enabled"/>	
 	
 	<bean id="reCaptcha" class="net.tanesha.recaptcha.ReCaptchaImpl">
-        <property name="privateKey" value="6Ld7av4SAAAAAPqyLaN63Q2qNBZVu1-ESWUvUjLq"/>
+        <property name="privateKey" value="6Ld7av4SAAAAAINAmuKYWEBsNV_LQxiiEkm3F6_S"/>
     </bean>
 </beans>
