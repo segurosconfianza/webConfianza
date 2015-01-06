@@ -20,17 +20,17 @@
 	<!-- Beans generales al proyecto -->
 	<bean id="gson" class="com.google.gson.Gson" />
 	
- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
- 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/> 
- 		<property name="url" value="jdbc:mysql://192.168.100.202:3306/myprayer"/> 
- 		<property name="username" value="root"/> 
- 		<property name="password" value="1234"/> 
- 	</bean> 	
+ 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@192.168.100.108:1521:SEGCONFI"/>
+		<property name="username" value="webapp_confianza"/>
+		<property name="password" value="webapp_confianzaprod"/>
+	</bean> 	
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation">
-            <value>classpath:hibernateMySql.cfg.xml</value>
+            <value>classpath:hibernateOracle.cfg.xml</value>
         </property>
         <property name="packagesToScan" value="com.confianza.webapp.repository.*"/>
 	</bean>

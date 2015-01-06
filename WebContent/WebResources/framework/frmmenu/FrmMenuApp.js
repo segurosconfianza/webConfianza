@@ -10,6 +10,8 @@ FrmMainApp.config(['$routeProvider',
    	      controller: 'PolizaController'
    	    }).	    
    	    otherwise({
-   	      
+   	    	templateUrl: function(params) {
+     	          return  WEB_SERVER+'index.jsp';
+     	      }
    	    }); 
 }]);

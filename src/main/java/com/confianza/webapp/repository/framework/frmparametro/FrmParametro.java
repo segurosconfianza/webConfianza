@@ -50,7 +50,13 @@ public class FrmParametro {
 	 
 	@Column(name = "PARACOMB")
 	protected String paracomb; 
-
+	
+	@Column(name = "PARAREQU")
+	protected Long pararequ;
+	
+	@Column(name = "PARALABE")
+	protected String paralabe; 
+	
 	public FrmParametro(){
 	
 	}
@@ -103,13 +109,28 @@ public class FrmParametro {
 		this.paracomb = paracomb;
 	}
 
+	public Long getPararequ() {
+		return pararequ;
+	}
+
+	public void setPararequ(Long pararequ) {
+		this.pararequ = pararequ;
+	}
+
+	public String getParalabe() {
+		return paralabe;
+	}
+
+	public void setParalabe(String paralabe) {
+		this.paralabe = paralabe;
+	}
 
 	static public String[] getNames(){
-		return new String[]{ "PARACONS", "PARACOSU", "PARANOMB", "PARATIPO", "PARATIDA", "PARACOMB" };
+		return new String[]{ "PARACONS", "PARACOSU", "PARANOMB", "PARATIPO", "PARATIDA", "PARACOMB", "PARAREQU", "PARALABE" };
 	}		
 	
 	static public String getColumnNames(){
-		return " PARACONS, PARACOSU, PARANOMB, PARATIPO, PARATIDA, PARACOMB ";
+		return " PARACONS, PARACOSU, PARANOMB, PARATIPO, PARATIDA, PARACOMB, PARAREQU, PARALABE ";
 	}
 	
 	public String toString(){
@@ -118,6 +139,8 @@ public class FrmParametro {
 			+" PARANOMB: "+ this.paranomb 
 			+" PARATIPO: "+ this.paratipo 
 			+" PARATIDA: "+ this.paratida 
-			+" PARACOMB: "+ this.paracomb ;
+			+" PARACOMB: "+ this.paracomb 
+			+" PARAREQU: "+ this.pararequ
+			+" PARALABE: "+ this.paralabe;
 	}
 }

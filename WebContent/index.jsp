@@ -145,11 +145,11 @@
 
  	<!--contenido de la pagina-->
 	<aside>
-		<div ng-view></div>			
+		<div ng-view></div>
 	</aside>
 	<!-- fin del contenido-->
   
-	<div id="submenu">
+	<div id="submenu">	  
 	  <table border="0" cellpadding="0" cellspacing="0" width="950">
 	    <tbody><tr>
 	      <td><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=8">Defensor del cliente</a> &nbsp;&nbsp;&nbsp;<a href="http://www.confianza.com.co/index.php?seccion=preguntas">Preguntas frecuentes</a> &nbsp;&nbsp;&nbsp;<a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=9">Sitios de interés</a> &nbsp;&nbsp;&nbsp;<a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=10">Políticas de Privacidad y Seguridad</a> &nbsp;&nbsp;&nbsp;<a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=12">Consumidor Financiero</a> &nbsp;&nbsp;&nbsp;</td>
@@ -164,10 +164,28 @@
 			  <area shape="rect" coords="147,0,168,32" href="http://www.facebook.com/confianza.sa" target="_blank" title="Síganos en Facebook" alt="Síganos en Facebook">
 		  </map>
 		  </td>
-	    </tr></tbody></table>
-	</div>
-
-	<div id="pie">
+	    </tr></tbody></table>	
+	    <div>
+			<font color="black"></>Esta web optimizada para funcionar bajo el uso de los siguientes navegadores:</font>
+			<a href="http://www.mozilla.org/es-ES/firefox/fx/" target="_blank" title="Descargue Mozilla Firefox">
+				<span>Firefox</span>
+				<img width="30" height="30" border="0" align="bottom" alt="Firefox" src="Imagenes/Iconos/firefox.png">
+			</a>				  		
+			<a href="https://www.google.com/intl/es/chrome/browser/?hl=es" target="_blank" title="Descargue Google Chrome">
+				<span>Chrome</span>
+				<img width="30" height="30" border="0" align="bottom" alt="Chrome" src="Imagenes/Iconos/chrome.png">
+			</a>
+			<a href="http://www.apple.com/es/safari/" target="_blank" title="Descargue Safari">
+				<span>Safari</span>
+				<img width="30" height="30" border="0" align="bottom" alt="Safari" src="Imagenes/Iconos/safari.png">
+			</a>
+			<a href="http://www.opera.com/computer/windows" target="_blank" title="Descargue Opera">
+				<span>Opera</span>
+				<img width="30" height="30" border="0" align="bottom" alt="Opera" src="Imagenes/Iconos/opera.png">
+			</a>
+	  </div>     			  
+	</div>	
+	<div id="pie">	  
 	  <hr>
 	   	  <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	   	    <tbody><tr>
