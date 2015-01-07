@@ -23,8 +23,7 @@
 	<bean id="abstractSessionFactoryOracle" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" abstract="true"		
 		p:configLocation="classpath:hibernateOracle.cfg.xml" />
 	
-	<bean id="abstractTransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" abstract="true">	 	
-	</bean>
+	<bean id="abstractTransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" abstract="true" />
 	
 	<!-- Beans generales al proyecto -->
 	<bean id="gson" class="com.google.gson.Gson" />

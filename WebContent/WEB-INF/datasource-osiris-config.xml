@@ -10,8 +10,7 @@
 		  p:password="confidesapruebas" />
 
 	<bean id="sessionFactoryOsiris" parent="abstractSessionFactoryOracle"
-		  p:dataSource-ref="dataSourceOsiris"/>		
-	
+		  p:dataSource-ref="dataSourceOsiris"/>			
 
 	<bean id="transactionManagerOsiris" parent="abstractTransactionManager"
 	 	p:sessionFactory-ref="sessionFactoryOsiris"/>
