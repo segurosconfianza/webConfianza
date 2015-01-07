@@ -50,7 +50,11 @@
 			</form>				
 		</div>			
 		
-		<div class="panel" align="left" ng-if="Result">
+		<div class="panel" align="center" ng-if="BotonLoader">
+			<button class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Cargando...</button>
+		</div>
+		
+		<div class="panel" align="left" ng-if="Result">			
 			<table class="table table-condensed" border=0 width="80%">			   
 				<tr ng-repeat="column in Camp" ng-include="'data_renderer.jsp'">			   			   		 
 			   	</tr>

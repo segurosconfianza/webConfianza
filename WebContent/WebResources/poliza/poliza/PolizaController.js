@@ -6,6 +6,7 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 	$scope.ParamsAmparo = {};
 	$scope.Result = false;
 	$scope.Boton = true;	
+	$scope.BotonLoader = false;
 	  
 	PolizaService.getParams().then(function(dataResponse) {  
     	
@@ -81,8 +82,9 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 	
 	$scope.loadRecord= function(){				
 			
+		$scope.BotonLoader=true;
 		$scope.Boton=false;
-		$scope.Result= false;
+		$scope.Result= false;		
 		
 		var verify=true;
 		
@@ -98,6 +100,7 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 			alert('Error: No se ha cargado el captcha, intente de nuevo');
 			grecaptcha.render("g-recaptcha", {"sitekey": "6Ld7av4SAAAAAINAmuKYWEBsNV_LQxiiEkm3F6_S", "theme": "light"});		
 			$scope.Boton = true;
+			$scope.BotonLoader=false;
 			return;
 		}
 			
@@ -106,6 +109,7 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 		if(captcha==null || captcha==undefined || captcha==''){
 			alert('Error: Verifica que no eres un robot');
 			$scope.Boton = true;
+			$scope.BotonLoader=false;
 			return;
 		}
 		else{
@@ -117,11 +121,12 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 								PolizaService.loadRecord($scope.Params, document.getElementById('g-recaptcha-response').value).then(function(dataResponse) {
 															
 									if(dataResponse.data.error!=undefined){
-										$scope.Result=false;
-						    			alert(dataResponse.data.tituloError+': '+dataResponse.data.error);    			
+										$scope.Result=false;										
+						    			alert(dataResponse.data.tituloError+': '+dataResponse.data.error); 
+						    			$scope.BotonLoader=false;
 									}
 						        	else{ 
-						        		$scope.Result=true;
+						        		$scope.Result=true;						        		
 						        		$scope.Data=dataResponse.data.data[0];
 						        		$scope.Camp=dataResponse.data.camp;
 						        		
@@ -133,7 +138,8 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 											
 						        			if(dataResponse.data.error!=undefined){
 						        				$scope.ResultAmparo=false;
-						            			alert(dataResponse.data.tituloError+': '+dataResponse.data.error);    			
+						            			alert(dataResponse.data.tituloError+': '+dataResponse.data.error);
+						            			$scope.BotonLoader=false;
 						        			}
 						                	else{ 
 						                		$scope.Result=true;
@@ -147,17 +153,20 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 						                       $scope.columnDefs=columns;
 						                       
 						                       $scope.myData=$scope.DataAmparo;
+						                       
+						                       $scope.BotonLoader=false;
 						                	}					        			
-						                });						        								        		
+						                });	
 						        	}
 						        }); 						
 						}else
 							alert('Error: '+dataResponse.data.error-codes);
 			        });
 					grecaptcha.reset();				
-				}else
-					alert("Datos vacios o incorrectos: Favor diligencie todos los campos");   
-			
+				}else{
+					alert("Datos vacios o incorrectos: Favor diligencie todos los campos");
+					$scope.BotonLoader=false;
+				}
 			$scope.Boton = true;
 		}
 		

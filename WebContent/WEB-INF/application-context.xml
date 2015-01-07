@@ -31,24 +31,10 @@
 	
 	<!-- Beans generales al proyecto -->
 	<bean id="gson" class="com.google.gson.Gson" />
-	
-	<bean id="dataSource" parent="abstractDataSourceOracle">
-		<property name="url" value="jdbc:oracle:thin:@192.168.100.108:1521:SEGCONFI"/>
-		<property name="username" value="webapp_confianza"/>
-		<property name="password" value="webapp_confianzaprod"/>
-	</bean> 
-	
-    <bean id="sessionFactory" parent="abstractSessionFactoryOracle">
-		<property name="dataSource" ref="dataSource"/>		
-        <property name="packagesToScan" value="com.confianza.webapp.repository.*"/>
-	</bean>
-
-	<bean id="transactionManager" parent="abstractTransactionManager">
-	 	<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-	
-	<import resource="application-context-osiris.xml"/>
-	
+		
+	<!-- inclusion de archivos de configruacion externos -->
+	<import resource="infraestructure-webapp.xml"/>
+	<import resource="infraestructure-osiris.xml"/>	
 	<import resource="security-config.xml"/>
 	
 </beans>
