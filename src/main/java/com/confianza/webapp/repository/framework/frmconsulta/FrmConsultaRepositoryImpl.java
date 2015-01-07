@@ -135,7 +135,7 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	 * @throws Exception
 	 */
 	@Override
-	@Transactional("Osiris")
+	@Transactional("transactionManagerOsiris")
 	public List<Object[]> loadDataOsiris(FrmConsulta frmConsulta,Map<String, Object> parameters){
 		try{
 			Query query = getSessionOsiris().createSQLQuery(frmConsulta.getConslsql());
