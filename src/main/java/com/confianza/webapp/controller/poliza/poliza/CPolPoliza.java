@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Controller
-@EnableWebMvc
 @RequestMapping("/PolPoliza")
 public class CPolPoliza {
 	

@@ -31,7 +31,6 @@ import sun.net.www.http.HttpClient;
 import com.google.gson.Gson;
 
 @Controller
-@EnableWebMvc
 public class GoogleReCaptchaController {
 
 	@Autowired

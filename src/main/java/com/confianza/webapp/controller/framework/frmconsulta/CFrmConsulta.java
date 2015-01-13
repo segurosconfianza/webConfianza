@@ -34,7 +34,6 @@ import com.confianza.webapp.service.framework.frmlogext.FrmLogextService;
 import com.confianza.webapp.repository.framework.frmconsulta.FrmConsulta;
 
 @Controller
-@EnableWebMvc
 @RequestMapping("/FrmConsulta")
 public class CFrmConsulta {
 	
