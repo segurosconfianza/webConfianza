@@ -6,7 +6,7 @@
         <!-- Nested list template -->
 	    <script type="text/ng-template" id="form_renderer.jsp">
 			  			  		
-			  <label for="{{column.paralabe}}" class="col-sm-3 control-label"><label ng-if="column.pararequ == 1"><font color="red">*</font></label>{{column.paralabe}}</label>
+			  <label for="{{column.paralabe}}" class="col-sm-3 control-label"><label ng-if="column.pararequ == 1"><font color="red">*</font></label><label ng-bind-html="column.paralabe | to_trusted"></label></label>
 			  <div class="col-sm-3" ng-if="column.paratida == 'S'">			
 				<input ng-pattern="/^[a-zA-Z0-9]*$/" style="width:100%;" type="text"   name ="{{column.paracons}}" id="{{column.paracons}}" ng-model="Params[column.paranomb]" ng-required="column.pararequ">
 			  </div>
@@ -23,9 +23,9 @@
         </script>
 	    	    
 	    <div align="left">
-		    <h2>Informaci&oacute;n de su p&oacute;liza</h2><br/>
+		    <h2>Consulta de P&oacute;lizas</h2><br/>
 		    
-		    <h4>Por favor, ingrese los siguientes datos para consultar la informaci&oacute;n general de su p&oacute;liza y de los amparos correspondientes:<h4><br/>
+		    <h4>Por favor, ingrese los siguientes datos para consultar la informaci&oacute;n general de su p&oacute;liza y de los amparos correspondientes:</h4><br/>
 		    		    
 		    <form name="formData" class="form-horizontal" role="form">
 			   <div class="form-group" ng-repeat="column in columns" ng-include="'form_renderer.jsp'">		   		   
@@ -62,6 +62,8 @@
 		</div>
 		 
 		<div class="gridStyle" ng-grid="gridOptions" ng-if="Result"></div>
+		
+		<div>Para mayor informaci&oacute;n, puede contactarnos a nuestra l&iacute;neas de atenci&oacute;n <b>7457777</b> en Bogot&aacute;, <b>6040465</b> en Medell&iacute;n, <b>6972111</b> en Bucaramanga, <b>4894111</b> en Cali y <b>3851555</b> en Barranquilla</div>
 		
       </div>
     </div>	    	       
