@@ -48,4 +48,12 @@ FrmMainApp.service('PolizaService', function($http, $rootScope) {
     	        params: {g_recaptcha: g_recaptcha}
     	     });
     	 }
+    	
+    	this.getContent = function(conscons) {    		    		
+    		return $http({
+    	        method: 'GET',
+    	        url:  WEB_SERVER+'FrmConsulta/loadData.json',
+    	        params: {conscons: conscons}
+    	     });
+    	 }  
     });    	

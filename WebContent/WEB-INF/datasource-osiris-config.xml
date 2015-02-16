@@ -5,9 +5,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<bean id="dataSourceOsiris" parent="abstractDataSourceOracle"		
-		  p:url="jdbc:oracle:thin:@192.168.100.211:1521:PRUEBAS2"
-		  p:username="confidesa"
-		  p:password="confidesapruebas" />
+		  p:url="amRiYzpvcmFjbGU6dGhpbjpAMTkyLjE2OC4xMDAuMjExOjE1MjE6UFJVRUJBUzI="
+		  p:username="Y29uZmlkZXNh"
+		  p:password="Y29uZmlkZXNhcHJ1ZWJhcw==" />
 
 	<bean id="sessionFactoryOsiris" parent="abstractSessionFactoryOracle"
 		  p:dataSource-ref="dataSourceOsiris"/>			

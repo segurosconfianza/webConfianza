@@ -4,15 +4,8 @@ FrmMainApp.config(['$routeProvider',
    	function($routeProvider) {
    	  $routeProvider.
    	    when('/Poliza', {
-   	      templateUrl: function(params) {
-   	          return  WEB_SERVER+'FrmConsulta/PolizaConsulta/';
-   	      },
+   	      templateUrl: WEB_SERVER+'FrmConsulta/PolizaConsulta/Poliza.html',
    	      controller: 'PolizaController'
-   	    }).	    
-   	    otherwise({
-   	    	templateUrl: function(params) {
-     	          return  WEB_SERVER+'index.jsp';
-     	      }
    	    }); 
 }]);
 

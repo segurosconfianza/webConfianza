@@ -5,9 +5,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<bean id="dataSource" parent="abstractDataSourceOracle"		
-		  p:url="jdbc:oracle:thin:@192.168.100.108:1521:SEGCONFI"
-		  p:username="webapp_confianza"
-		  p:password="webapp_confianzaprod" />
+		  p:url="amRiYzpvcmFjbGU6dGhpbjpAMTkyLjE2OC4xMDAuMTA4OjE1MjE6U0VHQ09ORkk="
+		  p:username="d2ViYXBwX2NvbmZpYW56YQ=="
+		  p:password="d2ViYXBwX2NvbmZpYW56YXByb2Q=" />
 
 	<bean id="sessionFactory" parent="abstractSessionFactoryOracle"
 		p:dataSource-ref="dataSource"

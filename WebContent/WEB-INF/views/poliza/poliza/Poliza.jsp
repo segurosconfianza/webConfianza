@@ -19,16 +19,21 @@
         </script>
         
         <script type="text/ng-template" id="data_renderer.jsp">
-		  	<td><b>{{column}}:</b></td><td>{{Data[column]}}</td>
+		  	<td><b ng-bind-html="column | to_trusted">:</b></td><td>{{Data[column]}}</td>
         </script>
 	    	    
 	    <div align="left">
-		    <h2>Consulta de P&oacute;lizas</h2><br/>
+		    <h2><label ng-bind-html="contentTitle | to_trusted"></label></h2><br/>
 		    
-		    <h4>Por favor, ingrese los siguientes datos para consultar la informaci&oacute;n general de su p&oacute;liza y de los amparos correspondientes:</h4><br/>
+		    <h4 ng-bind-html="contentDescr | to_trusted"></h4><br/>
 		    		    
 		    <form name="formData" class="form-horizontal" role="form">
-			   <div class="form-group" ng-repeat="column in columns" ng-include="'form_renderer.jsp'">		   		   
+			   <div class="form-group" ng-repeat="column in columns" ng-include="'form_renderer.jsp'"></div>
+			   <div class="form-group">			   		
+	  	      		<label class="col-sm-3 control-label"></font></label>
+			   		<div class="col-sm-3">
+						<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModalNew"> Consulte aqu&iacute; d&oacute;nde encontrar los datos solicitados. </button>				
+	  	      		</div>	  	      		
 			   </div>
 			   <div class="form-group">
 			   		<label class="col-sm-3 control-label"><font color="red">*</font></label>
@@ -40,22 +45,22 @@
 			   		<label class="col-sm-3 control-label"></label>
 			   		<div class="col-sm-3">
 						(<font color="red">*</font>) Campos obligatorios.				
-	  	      		</div>
+	  	      		</div>	  	      		
 			   </div>
-			  
+			   <div><label ng-bind-html="avisolegal | to_trusted"></label></div>
 			   <div class="modal-footer">
 		        <button type="reset" class="btn btn-default">Limpiar Datos</button>
 		        <button type="button" class="btn btn-primary" ng-click="loadRecord()" ng-show="Boton">Consultar Datos <span class="glyphicon glyphicon-search"></span></button>
 		      </div>
 			</form>				
-		</div>			
+		</div>							
 		
 		<div class="panel" align="center" ng-if="BotonLoader">
 			<button class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Cargando...</button>
 		</div>
 		
 		<div class="panel" align="left" ng-if="Result">			
-			<table class="table table-condensed" border=0 width="80%">			   
+			<table class="table table-condensed" border=0 width="80%">						  
 				<tr ng-repeat="column in Camp" ng-include="'data_renderer.jsp'">			   			   		 
 			   	</tr>
 			</table>			   		
@@ -63,7 +68,25 @@
 		 
 		<div class="gridStyle" ng-grid="gridOptions" ng-if="Result"></div>
 		
-		<div>Para mayor informaci&oacute;n, puede contactarnos a nuestra l&iacute;neas de atenci&oacute;n <b>7457777</b> en Bogot&aacute;, <b>6040465</b> en Medell&iacute;n, <b>6972111</b> en Bucaramanga, <b>4894111</b> en Cali y <b>3851555</b> en Barranquilla</div>
+		<div><label ng-bind-html="piepagina | to_trusted"></label></div>
+		
+		<!-- ventana modal -->
+    	<!-- Modal New -->
+		<div class="modal fade bs-example-modal-lg" id="myModalNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>		        
+		      </div>
+		      <div class="modal-body">
+		        <img alt="Poliza" src="Imagenes/Iconos/Poliza.png" height="50%" width="100%">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>		        
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		
       </div>
     </div>	    	       

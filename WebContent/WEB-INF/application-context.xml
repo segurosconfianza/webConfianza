@@ -21,7 +21,7 @@
 	<mvc:annotation-driven/>
 	
 	<!-- Abstract Parent Beans -->
- 	<bean id="abstractDataSourceOracle" class="org.springframework.jdbc.datasource.DriverManagerDataSource" abstract="true"
+ 	<bean id="abstractDataSourceOracle" class="com.confianza.webapp.utils.EncryptedDriverManagerDataSource" abstract="true"
 		p:driverClassName="oracle.jdbc.OracleDriver" />
 	 	
 	<bean id="abstractSessionFactoryOracle" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" abstract="true"		
