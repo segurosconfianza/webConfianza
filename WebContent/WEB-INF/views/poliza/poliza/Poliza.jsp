@@ -32,7 +32,7 @@
 			   <div class="form-group">			   		
 	  	      		<label class="col-sm-3 control-label"></font></label>
 			   		<div class="col-sm-3">
-						<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModalNew"> Consulte aqu&iacute; d&oacute;nde encontrar los datos solicitados. </button>				
+						<a data-toggle="modal" href="remote.html" data-target="#myModalNew">Consulte aqu&iacute; d&oacute;nde encontrar los datos solicitados. </a>										
 	  	      		</div>	  	      		
 			   </div>
 			   <div class="form-group">

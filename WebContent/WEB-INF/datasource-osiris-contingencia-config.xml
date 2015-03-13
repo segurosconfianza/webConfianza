@@ -5,14 +5,15 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<bean id="dataSourceOsiris" parent="abstractDataSourceOracle"		
-		  p:url="amRiYzpvcmFjbGU6dGhpbjpAMTkyLjE2OC4xMDAuMjExOjE1MjE6UFJVRUJBUzI="
-		  p:username="Y29uZmlkZXNh"
-		  p:password="Y29uZmlkZXNhcHJ1ZWJhcw==" />
+		  p:url="amRiYzpvcmFjbGU6dGhpbjpAMTkyLjE2OC4yMDAuMzoxNTIxOmNvbmZpY29u"
+		  p:username="d2ViX29zaXJpcw=="
+		  p:password="d2ViX29zaXJpc2NvbnRpbg==" />
 
 	<bean id="sessionFactoryOsiris" parent="abstractSessionFactoryOracle"
-		  p:dataSource-ref="dataSourceOsiris"/>			
+		p:dataSource-ref="dataSourceOsiris"
+        p:packagesToScan="com.confianza.webapp.repository.*"/>
 
 	<bean id="transactionManagerOsiris" parent="abstractTransactionManager"
-	 	p:sessionFactory-ref="sessionFactoryOsiris"/>
+	 	p:sessionFactory-ref="sessionFactoryOsiris" />
 
 </beans>
