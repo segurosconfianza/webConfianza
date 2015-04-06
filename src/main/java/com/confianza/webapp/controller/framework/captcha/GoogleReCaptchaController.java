@@ -44,7 +44,7 @@ public class GoogleReCaptchaController {
     public String validateCaptcha( ServletRequest servletRequest, @RequestParam("g_recaptcha") String g_recaptcha) throws Exception
     {		
 		String remoteAddress = servletRequest.getRemoteAddr();
-		String urlu = "https://www.google.com/recaptcha/api/siteverify?secret=6Ld7av4SAAAAAPqyLaN63Q2qNBZVu1-ESWUvUjLq&response="+g_recaptcha+"&user_ip_address="+remoteAddress;		
+		String urlu = "https://www.google.com/recaptcha/api/siteverify?secret=6Lc8MQQTAAAAAFHT7WHtL6ri8EuB-LVt7wOjxGU8&response="+g_recaptcha+"&user_ip_address="+remoteAddress;		
 		
 		URL url = new URL(urlu);
 		

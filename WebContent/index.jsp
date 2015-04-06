@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@page import="java.util.Properties"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="es" ng-app=FrmMainApp>
 	<head>
@@ -7,10 +8,18 @@
 		<title>Confianza, honramos nuestro nombre</title>
 
 		<%
-			ServletContext context = pageContext.getServletContext();
-			String WEB_SERVER = context.getInitParameter("WEB_SERVER");
-		%>	    
-		<script >var WEB_SERVER='<%out.print(WEB_SERVER);%>';</script>
+			Properties prop=new Properties();
+			prop.load(getServletContext().getResourceAsStream("/WEB-INF/Confianza.properties"));
+			
+			String WEB_SERVER = prop.getProperty("WEB_SERVER");				  	
+			String PRIVATEKEY = prop.getProperty("PRIVATEKEY");
+			String SITEKEY = prop.getProperty("SITEKEY");
+	    %>	
+	       
+		<script >var WEB_SERVER='<%out.print(WEB_SERVER);%>';
+				 var PRIVATEKEY='<%out.print(PRIVATEKEY);%>';
+				 var SITEKEY='<%out.print(SITEKEY);%>';				 
+		</script>
 	
 		<script src="lib/Angular/1.3.2/angular.js"></script>	    
 	    <script src="lib/Angular/1.3.2/angular-route.js"></script>
@@ -88,58 +97,59 @@
 					<div id="menu"> 
 		                <ul id="nav">
 						 	<li id="nuestra" class="top">
-								<a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1" class="top_link"><img src="lib/Confianza/imagenes/estructura/magic.gif" alt="" border="0" height="40" width="154"></a>
+								<a href="http://www.confianza.com.co/index.php?seccion=interna&id=1" class="top_link"><img src="lib/Confianza/imagenes/estructura/magic.gif" alt="" border="0" height="40" width="154"></a>
 								<ul class="sub">
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1&amp;cont=2">Información general</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1&amp;cont=3">Estados financieros</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1&amp;cont=87">Orgullosos de nuestra gente</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1&amp;cont=4">Código de conducta</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1&amp;cont=81">Código de gobierno corporativo</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1&amp;cont=18">Valores corporativos</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1&amp;cont=5">¿Por qué trabajar en Confianza?</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1&amp;cont=6">Responsabilidad Social Empresarial</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1&amp;cont=7">¿Cómo ser proveedor de Confianza?</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1&amp;cont=11">Sistema de Administración de Riesgos</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=1&amp;cont=96">Comunicado de Prensa</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=1&amp;cont=2">Información general</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=1&amp;cont=3">Estados financieros</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=1&amp;cont=87">Orgullosos de nuestra gente</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=1&amp;cont=4">Código de conducta</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=1&amp;cont=81">Código de gobierno corporativo</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=1&amp;cont=18">Valores corporativos</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=1&amp;cont=5">¿Por qué trabajar en Confianza?</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=1&amp;cont=6">Responsabilidad Social Empresarial</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=1&amp;cont=7">¿Cómo ser proveedor de Confianza?</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=1&amp;cont=11">Sistema de Administración de Riesgos</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=1&amp;cont=96">Comunicado de Prensa</a></li>
 								</ul>
 							</li>
 							<li id="porque" class="top">
-								<a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=2" class="top_link"><img src="lib/Confianza/imagenes/estructura/magic.gif" alt="" border="0" height="40" width="154"></a>
+								<a href="http://www.confianza.com.co/index.php?seccion=interna&id=2" class="top_link"><img src="lib/Confianza/imagenes/estructura/magic.gif" alt="" border="0" height="40" width="154"></a>
 								<ul class="sub">
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=2&amp;cont=8">¿Por qué Confianza?</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=2&amp;cont=9">Nuestro respaldo</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=2&amp;cont=10">Presencia en grandes proyectos</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=2&amp;cont=68">Notas de ingeniería</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=2&amp;cont=8">¿Por qué Confianza?</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=2&amp;cont=9">Nuestro respaldo</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=2&amp;cont=10">Presencia en grandes proyectos</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=2&amp;cont=68">Notas de ingeniería</a></li>
 								</ul>
 							</li>
 							<li id="productos" class="top">
-								<a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=3" class="top_link"><img src="lib/Confianza/imagenes/estructura/magic.gif" alt="" border="0" height="40" width="154"></a>
+								<a href="http://www.confianza.com.co/index.php?seccion=interna&id=3" class="top_link"><img src="lib/Confianza/imagenes/estructura/magic.gif" alt="" border="0" height="40" width="154"></a>
 								<ul class="sub">
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=3&amp;cont=88">Información general</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=3&amp;cont=20">Póliza de cumplimiento</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=3&amp;cont=21">Cauciones judiciales</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=3&amp;cont=23">Disposiciones legales</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=3&amp;cont=22">Responsabilidad civil extracontractual</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=3&amp;cont=24">Todo riesgo construcción y/o montaje</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=3&amp;cont=88">Información general</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=3&amp;cont=20">Póliza de cumplimiento</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=3&amp;cont=21">Cauciones judiciales</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=3&amp;cont=23">Disposiciones legales</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=3&amp;cont=22">Responsabilidad civil extracontractual</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=3&amp;cont=24">Todo riesgo construcción y/o montaje</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=3&amp;cont=105">Consulte su Póliza</a></li>
 								</ul>
 							</li>
 							<li id="intermediarios" class="top">
-								<a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=5" class="top_link"><img src="lib/Confianza/imagenes/estructura/magic.gif" alt="" border="0" height="40" width="154"></a>
+								<a href="http://www.confianza.com.co/index.php?seccion=interna&id=5" class="top_link"><img src="lib/Confianza/imagenes/estructura/magic.gif" alt="" border="0" height="40" width="154"></a>
 								<ul class="sub">
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=5&amp;cont=16">¿Cómo ser intermediario de Confianza?</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=5&amp;cont=26">Confired</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=5&amp;cont=70">Consulte su cartera</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=5&amp;cont=58">Convenciones</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=5&amp;cont=80">Normatividad</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=5&amp;cont=16">¿Cómo ser intermediario de Confianza?</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=5&amp;cont=26">Confired</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=5&amp;cont=70">Consulte su cartera</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=5&amp;cont=58">Convenciones</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=5&amp;cont=80">Normatividad</a></li>
 								</ul>
 							</li>
 							<li id="oficinas" class="top">
-								<a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=6" class="top_link"><img src="lib/Confianza/imagenes/estructura/magic.gif" alt="" border="0" height="40" width="154"></a>
+								<a href="http://www.confianza.com.co/index.php?seccion=interna&id=6" class="top_link"><img src="lib/Confianza/imagenes/estructura/magic.gif" alt="" border="0" height="40" width="154"></a>
 								<ul class="sub">
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=6&amp;cont=25">Nuestras Oficinas</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=6&amp;cont=48">Agencias Representantes</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=6&amp;cont=103">Servicio al Cliente</a></li>
-								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&amp;id=6&amp;cont=104">Centro de Contacto</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=6&amp;cont=25">Nuestras Oficinas</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=6&amp;cont=48">Agencias Representantes</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=6&amp;cont=103">Servicio al Cliente</a></li>
+								<li><a href="http://www.confianza.com.co/index.php?seccion=interna&id=6&amp;cont=104">Centro de Contacto</a></li>
 								</ul>
 							</li>
 						</ul>

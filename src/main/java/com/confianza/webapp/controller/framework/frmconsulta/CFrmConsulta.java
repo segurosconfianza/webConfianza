@@ -129,5 +129,12 @@ public class CFrmConsulta {
 	public String loadConsChield(@RequestParam("conscons") String conscons) throws Throwable{
 			
 		return this.frmConsultaService.loadConsChield(conscons);
-	}		
+	}
+	
+	@RequestMapping(value = "/loadRecordFecha.json", params = {"conscons"}, method = RequestMethod.GET, produces={"application/json"})
+	@ResponseBody
+	public String loadRecordFecha(@RequestParam("conscons") String conscons) throws Throwable{
+			
+		return this.frmConsultaService.loadRecord(conscons, null);
+	}
 }

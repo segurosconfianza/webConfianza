@@ -38,7 +38,7 @@
 			   <div class="form-group">
 			   		<label class="col-sm-3 control-label"><font color="red">*</font></label>
 			   		<div class="col-sm-3">
-						<div id="g-recaptcha" name="g-recaptcha" class="g-recaptcha" data-sitekey="6Ld7av4SAAAAAINAmuKYWEBsNV_LQxiiEkm3F6_S" ></div>				
+						<div id="g-recaptcha" name="g-recaptcha" class="g-recaptcha" data-sitekey=SITEKEY ></div>				
 	  	      		</div>
 			   </div>			   			   
 			   <div class="form-group">
@@ -52,6 +52,7 @@
 		        <button type="reset" class="btn btn-default">Limpiar Datos</button>
 		        <button type="button" class="btn btn-primary" ng-click="loadRecord()" ng-show="Boton">Consultar Datos <span class="glyphicon glyphicon-search"></span></button>
 		      </div>
+		      <div>La informaci&#243;n para esta consulta fue actualizada por &#250;ltima vez en:<b>{{fechaActualziacion}}</b> Si requiere validar una p&#243;liza con expedici&#243;n posterior, por favor p&#243;ngase en contacto con nosotros.<p/></div>
 			</form>				
 		</div>							
 		

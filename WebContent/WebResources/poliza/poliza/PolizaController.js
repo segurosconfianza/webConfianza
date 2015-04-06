@@ -7,7 +7,8 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 	$scope.Result = false;
 	$scope.Boton = true;	
 	$scope.BotonLoader = false;
-	  
+	$scope.captcha = false;
+	
 	PolizaService.getContent(1).then(function(dataResponse) {  
 		if(dataResponse.data.error!=undefined)
     		alert(dataResponse.data.tituloError+': '+dataResponse.data.error);
@@ -24,6 +25,7 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 		    	else{
 		    		$scope.columns=dataResponse.data.data;
 		    	}
+		    	cargarRecaptcha();
 		    });
 			
 			PolizaService.getParamsAmparo().then(function(dataResponse) {  
@@ -33,8 +35,16 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 		    	else{
 		    		$scope.columnsAmparo=dataResponse.data.data;
 		    	}
+		    	cargarRecaptcha();
 		    });
+			
+			PolizaService.loadRecordFecha().then(function(dataResponse) {
+				$scope.fechaActualziacion=dataResponse.data.data[0].FECEXP;
+				cargarRecaptcha();
+			});
     	}
+		
+		cargarRecaptcha();
     });
 	
 	$scope.optionsSucursales=[
@@ -97,7 +107,7 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 		//sino se cargo el captcha
 		if(document.getElementById('g-recaptcha-response')==null){
 			alert('Error: No se ha cargado el captcha, intente de nuevo');
-			grecaptcha.render("g-recaptcha", {"sitekey": "6Ld7av4SAAAAAINAmuKYWEBsNV_LQxiiEkm3F6_S", "theme": "light"});		
+			grecaptcha.render("g-recaptcha", {"sitekey": SITEKEY, "theme": "light"});		
 			$scope.Boton = true;
 			$scope.BotonLoader=false;
 			return;
@@ -211,6 +221,13 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
           $scope.filterOptions.filterText = '';
         }
       };
+      
+      function cargarRecaptcha(){
+    	  if($scope.captcha==false){  			
+  			grecaptcha.render("g-recaptcha", {"sitekey": SITEKEY, "theme": "light"});		  			
+  			$scope.captcha = true;
+  		}
+      }
           
  }            
 ])
