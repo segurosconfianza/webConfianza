@@ -4,10 +4,8 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<bean id="dataSourceOsiris" parent="abstractDataSourceOracle"		
-		  p:url="amRiYzpvcmFjbGU6dGhpbjpAMTkyLjE2OC4yMDAuMzoxNTIxOmNvbmZpY29u"
-		  p:username="d2ViX29zaXJpcw=="
-		  p:password="d2ViX29zaXJpc2NvbnRpbg==" />
+	<bean id="dataSourceOsiris" class="org.springframework.jndi.JndiObjectFactoryBean"	
+		  p:jndiName="java:comp/env/jdbc/OsirisDB"/>
 
 	<bean id="sessionFactoryOsiris" parent="abstractSessionFactoryOracle"
 		p:dataSource-ref="dataSourceOsiris"

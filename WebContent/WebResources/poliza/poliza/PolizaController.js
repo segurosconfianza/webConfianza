@@ -9,72 +9,75 @@ FrmMainApp.controller('PolizaController', ['$scope', 'PolizaService',function($s
 	$scope.BotonLoader = false;
 	$scope.captcha = false;
 	
-	PolizaService.getContent(1).then(function(dataResponse) {  
-		if(dataResponse.data.error!=undefined)
-    		alert(dataResponse.data.tituloError+': '+dataResponse.data.error);
-    	else{
-    		$scope.contentTitle=dataResponse.data.titulo;
-    		$scope.contentDescr=dataResponse.data.descri;
-    		$scope.piepagina=dataResponse.data.piepagina;
-    		$scope.avisolegal=dataResponse.data.avisolegal;
-    		
-			PolizaService.getParams().then(function(dataResponse) {  
-		    	
-		    	if(dataResponse.data.error!=undefined)
-		    		alert(dataResponse.data.tituloError+': '+dataResponse.data.error);
-		    	else{
-		    		$scope.columns=dataResponse.data.data;
-		    	}
-		    	cargarRecaptcha();
-		    });
+	//Funcion para inicializar los datos en la carga de la pagina
+	$scope.init = function() {
+		PolizaService.getContent(1).then(function(dataResponse) {  
+			if(dataResponse.data.error!=undefined)
+	    		alert(dataResponse.data.tituloError+': '+dataResponse.data.error);
+	    	else{
+	    		$scope.contentTitle=dataResponse.data.titulo;
+	    		$scope.contentDescr=dataResponse.data.descri;
+	    		$scope.piepagina=dataResponse.data.piepagina;
+	    		$scope.avisolegal=dataResponse.data.avisolegal;
+	    		
+				PolizaService.getParams().then(function(dataResponse) {  
+			    	
+			    	if(dataResponse.data.error!=undefined)
+			    		alert(dataResponse.data.tituloError+': '+dataResponse.data.error);
+			    	else{
+			    		$scope.columns=dataResponse.data.data;
+			    	}
+			    	cargarRecaptcha();
+			    });
+				
+				PolizaService.getParamsAmparo().then(function(dataResponse) {  
+			    	
+			    	if(dataResponse.data.error!=undefined)
+			    		alert(dataResponse.data.tituloError+': '+dataResponse.data.error);
+			    	else{
+			    		$scope.columnsAmparo=dataResponse.data.data;
+			    	}
+			    	cargarRecaptcha();
+			    });
+				
+				PolizaService.loadRecordFecha().then(function(dataResponse) {
+					$scope.fechaActualziacion=dataResponse.data.data[0].FECEXP;
+					cargarRecaptcha();
+				});
+	    	}
 			
-			PolizaService.getParamsAmparo().then(function(dataResponse) {  
-		    	
-		    	if(dataResponse.data.error!=undefined)
-		    		alert(dataResponse.data.tituloError+': '+dataResponse.data.error);
-		    	else{
-		    		$scope.columnsAmparo=dataResponse.data.data;
-		    	}
-		    	cargarRecaptcha();
-		    });
-			
-			PolizaService.loadRecordFecha().then(function(dataResponse) {
-				$scope.fechaActualziacion=dataResponse.data.data[0].FECEXP;
-				cargarRecaptcha();
-			});
-    	}
-		
-		cargarRecaptcha();
-    });
+			cargarRecaptcha();
+	    });
 	
-	$scope.optionsSucursales=[
-	                   {"value": "128", "label": "ARMENIA"},
-	                   {"value": "124", "label": "AVENIDA CHILE"},
-	                   {"value": "106", "label": "BARRANQUILLA"},
-	                   {"value": "118", "label": "BUCARAMANGA"},
-	                   {"value": "104", "label": "BUENAVENTURA"},
-	                   {"value": "103", "label": "CALI"},
-	                   {"value": "102", "label": "CARTAGENA"},
-	                   {"value": "101", "label": "CENTRO ANDINO"},
-	                   {"value": "131", "label": "CENTRO INTERNACIONAL"},
-	                   {"value": "133", "label": "CUCUTA"},
-	                   {"value": "117", "label": "IBAGUE"},
-	                   {"value": "116", "label": "MANIZALES"},
-         			   {"value": "105", "label": "MEDELLIN"},
-         			   {"value": "122", "label": "MOCOA"},
-         			   {"value": "108", "label": "MONTERIA"},         			  
-        			   {"value": "107", "label": "NEIVA"},
-        			   {"value": "115", "label": "PASTO"},
-        			   {"value": "123", "label": "PEREIRA"},
-        			   {"value": "130", "label": "POPAYAN"},
-        			   {"value": "109", "label": "RIOACHA"},
-        			   {"value": "111", "label": "SANTA MARTA"},
-        			   {"value": "136", "label": "SOGAMOSO"},
-        			   {"value": "126", "label": "TUNJA"},
-        			   {"value": "135", "label": "VALLEDUPAR"},
-        			   {"value": "112", "label": "VILLAVICENCIO"},
-         			   {"value": "127", "label": "YOPAL"}
-					  ];
+		$scope.optionsSucursales=[
+		                   {"value": "128", "label": "ARMENIA"},
+		                   {"value": "124", "label": "AVENIDA CHILE"},
+		                   {"value": "106", "label": "BARRANQUILLA"},
+		                   {"value": "118", "label": "BUCARAMANGA"},
+		                   {"value": "104", "label": "BUENAVENTURA"},
+		                   {"value": "103", "label": "CALI"},
+		                   {"value": "102", "label": "CARTAGENA"},
+		                   {"value": "101", "label": "CENTRO ANDINO"},
+		                   {"value": "131", "label": "CENTRO INTERNACIONAL"},
+		                   {"value": "133", "label": "CUCUTA"},
+		                   {"value": "117", "label": "IBAGUE"},
+		                   {"value": "116", "label": "MANIZALES"},
+	         			   {"value": "105", "label": "MEDELLIN"},
+	         			   {"value": "122", "label": "MOCOA"},
+	         			   {"value": "108", "label": "MONTERIA"},         			  
+	        			   {"value": "107", "label": "NEIVA"},
+	        			   {"value": "115", "label": "PASTO"},
+	        			   {"value": "123", "label": "PEREIRA"},
+	        			   {"value": "130", "label": "POPAYAN"},
+	        			   {"value": "109", "label": "RIOACHA"},
+	        			   {"value": "111", "label": "SANTA MARTA"},
+	        			   {"value": "136", "label": "SOGAMOSO"},
+	        			   {"value": "126", "label": "TUNJA"},
+	        			   {"value": "135", "label": "VALLEDUPAR"},
+	        			   {"value": "112", "label": "VILLAVICENCIO"},
+	         			   {"value": "127", "label": "YOPAL"}
+						  ];
+	}
 	
 	$scope.loadRecord= function(){				
 			

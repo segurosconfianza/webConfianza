@@ -34,7 +34,7 @@
 		
 	<!-- inclusion de archivos de configruacion externos -->
 	<import resource="security-config.xml"/>
-	<import resource="datasource-webapp-contingencia-config.xml"/>
-	<import resource="datasource-osiris-contingencia-config.xml"/>		
+	<import resource="datasource-webapp-config.xml"/>
+	<import resource="datasource-osiris-config.xml"/>		
 	
 </beans>

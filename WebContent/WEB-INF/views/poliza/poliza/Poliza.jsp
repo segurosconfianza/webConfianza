@@ -1,7 +1,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 	<div class="row">
-      <div ng-controller="PolizaController"><!-- Division grid maestro -->      	
+      <div ng-controller="PolizaController" ng-init="init()"><!-- Division grid maestro -->      	
         
         <!-- Nested list template -->
 	    <script type="text/ng-template" id="form_renderer.jsp">

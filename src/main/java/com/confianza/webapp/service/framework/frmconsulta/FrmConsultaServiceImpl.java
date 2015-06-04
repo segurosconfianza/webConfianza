@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -65,6 +66,13 @@ public class FrmConsultaServiceImpl implements FrmConsultaService{
 		return gson.toJson(frmConsultaRepository.list(id));
 	}
 	
+	@Override
+	@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "APP_FRMCONSULTA_ALL", "APP_FRMCONSULTA_READ"})
+	public FrmConsulta listEntity(Long id){
+		
+		return frmConsultaRepository.list(id);
+	}
+	
 	@Override	
 	public FrmConsulta listName(String id){
 		return frmConsultaRepository.listName(id);
@@ -82,13 +90,13 @@ public class FrmConsultaServiceImpl implements FrmConsultaService{
 	
 	@Override
 	//@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "SOPORTE_ALL", "SOPORTE_READ"})
-	public String loadRecord(String conscons, String params){
+	public String loadRecord(HttpServletRequest request, Long conscons, String params){
 		
         Type type = new TypeToken<Map<String, Object>>(){}.getType();
 		Map<String, Object> parameters=gson.fromJson(params, type);   						
 		
 		//carga la consulta dinamica
-		FrmConsulta frmConsulta=this.listName(conscons);
+		FrmConsulta frmConsulta=this.listEntity(conscons);
 		
 		//carga los datos de la consulta
 		List<Object[]> rAll=this.loadData(frmConsulta, parameters);
@@ -226,10 +234,10 @@ public class FrmConsultaServiceImpl implements FrmConsultaService{
 	
 	@Override
 	//@RolesAllowed({"ADMINISTRATOR_ADMINISTRATOR", "SOPORTE_ALL", "SOPORTE_READ"})
-	public String loadData(String conscons){
+	public String loadData(Long conscons){
 			        
 		//carga la consulta dinamica
-		FrmConsulta frmConsulta=this.listName(conscons);
+		FrmConsulta frmConsulta=this.listEntity(conscons);
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("titulo", frmConsulta.getConsnomb());

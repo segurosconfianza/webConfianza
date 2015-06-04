@@ -62,7 +62,7 @@ FrmMainApp.service('PolizaService', function($http, $rootScope) {
     		return $http({
     	        method: 'GET',
     	        url: WEB_SERVER+'FrmConsulta/loadRecordFecha.json',
-    	        params: {conscons: 10}
+    	        params: {conscons: 27}
     	     });
     	 } 
     	    	

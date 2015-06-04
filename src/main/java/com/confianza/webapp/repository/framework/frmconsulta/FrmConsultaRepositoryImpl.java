@@ -31,6 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.confianza.webapp.repository.framework.frmparametro.FrmParametro;
 
 @Repository
+@Transactional
 public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	
 	@Autowired
@@ -72,11 +73,11 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	 * @throws Exception
 	 */
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public FrmConsulta list(Long id){
 		try{
 			String sql = "select "+FrmConsulta.getColumnNames()
-					   + "from FrmConsulta "
+					   + "from Frm_Consulta "
 					   + "where conscons = :id ";
 						
 			Query query = getSession().createSQLQuery(sql)
@@ -96,16 +97,16 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	 * @throws Exception
 	 */
 	@Override
-	@Transactional
-	public FrmConsulta listName(String id){
+	@Transactional(readOnly = true)
+	public FrmConsulta listName(String consnomb){
 		try{
 			String sql = "select "+FrmConsulta.getColumnNames()
 					   + "from Frm_Consulta "
-					   + "where conscons = :id ";
+					   + "where consnomb = :consnomb ";
 						
 			Query query = getSession().createSQLQuery(sql)	
 						 .addEntity(FrmConsulta.class)	
-					     .setParameter("id", id);
+					     .setParameter("consnomb", consnomb);
 			return (FrmConsulta) query.uniqueResult();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -120,7 +121,7 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	 * @throws Exception
 	 */
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public FrmConsulta listChild(String id){
 		try{
 			String sql = "select "+FrmConsulta.getColumnNames()
@@ -144,7 +145,7 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	 * @throws Exception
 	 */
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public FrmConsulta listProcedureChild(String id){
 		try{
 			String sql = "select "+FrmConsulta.getColumnNames()
@@ -168,7 +169,7 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	 * @throws Exception
 	 */
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<Object[]> loadData(FrmConsulta frmConsulta,Map<String, Object> parameters){
 		try{
 			Query query =  getSession().createSQLQuery(frmConsulta.getConslsql());
@@ -195,7 +196,7 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	 * @throws Exception
 	 */
 	@Override
-	@Transactional("transactionManagerOsiris")
+	@Transactional(value="transactionManagerOsiris", readOnly = true)
 	public List<Object[]> loadDataOsiris(FrmConsulta frmConsulta,Map<String, Object> parameters){
 		try{
 			Query query = getSessionOsiris().createSQLQuery(frmConsulta.getConslsql());
@@ -221,7 +222,7 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	 * @throws Exception
 	 */
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<FrmConsulta> listAll(int init, int limit){
 		try{
 			String sql = "select "+FrmConsulta.getColumnNames()
@@ -248,7 +249,7 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	 * @throws Exception
 	 */
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public int getCount(){
 		try{
 			String sql = "select count(*) "
@@ -278,7 +279,7 @@ public class FrmConsultaRepositoryImpl implements FrmConsultaRepository{
 	 * @throws Exception
 	 */
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public FrmConsulta update(FrmConsulta frmconsulta){
 		getSession().update(frmconsulta);
 		return frmconsulta;

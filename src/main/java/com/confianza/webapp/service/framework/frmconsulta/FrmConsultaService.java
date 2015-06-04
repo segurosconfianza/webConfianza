@@ -12,6 +12,8 @@ package com.confianza.webapp.service.framework.frmconsulta;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.confianza.webapp.repository.framework.frmconsulta.FrmConsulta;
 import com.confianza.webapp.repository.framework.frmparametro.FrmParametro;
 
@@ -37,18 +39,20 @@ public interface FrmConsultaService{
 
 	public Map<String, Object> loadProcedure(FrmConsulta frmConsulta,	List<FrmParametro> parametros, Map<String, Object> parameters, Map<String, Object> parametersData);
 
-	public String loadRecord(String conscons, String params);
-
 	public String updateRecord(String conscons, String params, String paramsData);
 
 	public String listCombo(String conscons);
 
 	public String listComboDynamic(String conscons);
 
-	public String loadData(String conscons);
-
 	public FrmConsulta listChild(String id);
 
 	public String loadConsChield(String conscons);
+
+	public String loadRecord(HttpServletRequest request, Long conscons, String params);
+
+	public FrmConsulta listEntity(Long id);
+
+	public String loadData(Long conscons);
 	
 }

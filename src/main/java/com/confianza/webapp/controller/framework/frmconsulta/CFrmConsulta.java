@@ -1,11 +1,5 @@
 package com.confianza.webapp.controller.framework.frmconsulta;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
@@ -19,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.confianza.webapp.service.framework.frmconsulta.FrmConsultaService;
 import com.confianza.webapp.repository.framework.frmconsulta.FrmConsulta;
@@ -66,9 +59,9 @@ public class CFrmConsulta {
 	
 	@RequestMapping(value = "/loadRecord.json", params = {"conscons","params"}, method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
-	public String loadRecord(@RequestParam("conscons") String conscons, @RequestParam("params") String params) throws Throwable{
+	public String loadRecord(HttpServletRequest request, @RequestParam("conscons") Long conscons, @RequestParam("params") String params) throws Throwable{
 			
-		return this.frmConsultaService.loadRecord(conscons, params);
+		return this.frmConsultaService.loadRecord(request, conscons, params);
 	}
 	
 	@RequestMapping(value = "/updateRecord.json", params = {"conscons","params","paramsData", "files"}, method = RequestMethod.POST, produces={"application/json"})
@@ -119,7 +112,7 @@ public class CFrmConsulta {
 	
 	@RequestMapping(value = "/loadData.json", params = {"conscons"}, method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
-	public String loadData(@RequestParam("conscons") String conscons) throws Throwable{
+	public String loadData(@RequestParam("conscons") Long conscons) throws Throwable{
 			
 		return this.frmConsultaService.loadData(conscons);
 	}
@@ -133,8 +126,8 @@ public class CFrmConsulta {
 	
 	@RequestMapping(value = "/loadRecordFecha.json", params = {"conscons"}, method = RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
-	public String loadRecordFecha(@RequestParam("conscons") String conscons) throws Throwable{
+	public String loadRecordFecha(HttpServletRequest request, @RequestParam("conscons") Long conscons) throws Throwable{
 			
-		return this.frmConsultaService.loadRecord(conscons, null);
+		return this.frmConsultaService.loadRecord(request, conscons, null);
 	}
 }
