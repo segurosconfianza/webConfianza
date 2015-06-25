@@ -33,7 +33,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.confianza.webapp.repository.framework.frmlogext.FrmLogext;
 import com.confianza.webapp.repository.framework.frmlogext.FrmLogextRepository;
+import com.confianza.webapp.service.framework.frmlogext.FrmLogextService;
 import com.google.gson.Gson;
 
 @Service
@@ -43,29 +45,17 @@ public class FrmLogextAOPImpl{
 	Gson gson;
 	
 	@Autowired
-	private FrmLogextRepository frmlogextRepository;
-	
-	/**
-	 * @return the frmlogextRepository
-	 */
-	public FrmLogextRepository getFrmLogextRepository() {
-		return frmlogextRepository;
-	}
-
-	/**
-	 * @param frmlogextRepository the frmlogextRepository to set
-	 */
-	public void setFrmLogextRepository(FrmLogextRepository frmlogextRepository) {
-		this.frmlogextRepository = frmlogextRepository;
-	}
-	
+	private FrmLogextService frmlogextService;
 					
 	@Pointcut("execution(* com.confianza.webapp.controller.framework.frmconsulta.CFrmConsulta.loadRecord(..))")
 	public void pointIntercepController(){		
 	}	
 	
-	@Before("pointIntercepController()")
-	public void interceptarLoadRecord(JoinPoint point) throws Throwable{
+	@Around("pointIntercepController()")
+	public String interceptarLoadRecord(ProceedingJoinPoint point) throws Throwable{
+		
+		String data=(String) point.proceed();
+		
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 		
 		String remoteAddress = request.getRemoteAddr();	
@@ -91,8 +81,17 @@ public class FrmLogextAOPImpl{
 		    "REMOTE_ADDR" };
 		
 		String info="";
-		for (String header : HEADERS_TO_TRY) {
+		for (String header : HEADERS_TO_TRY) 
 	        info += header + ": " + request.getHeader(header) + ". ";	        
-	    }	
+	    
+		FrmLogext frmLogext=new FrmLogext();
+		frmLogext.setLoexacci("1");
+		frmLogext.setLoexdaco("InetAddress.getHostAddress(): "+IP.getHostAddress()+" InetAddress.getHostName(): "+IP.getHostName()+" InetAddress.getLoopbackAddress(): "+IP.getLoopbackAddress()+" InetAddress.getCanonicalHostName(): "+IP.getCanonicalHostName()+" InetAddress.toString(): "+IP.toString()+" InetAddress.getAddress(): "+IP.getAddress()+info);
+		frmLogext.setLoexdata("Argumentos: "+point.getArgs()[2]+" Datos Cargados: "+data);
+		frmLogext.setLoexfecr(new Date());
+		frmLogext.setLoextabl("consulta: "+point.getArgs()[1]);
+		frmlogextService.insert(frmLogext);
+		
+		return data;
 	}
 }
